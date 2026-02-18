@@ -1,0 +1,235 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-nagara-black: #0a0a0a;
+  --color-nagara-dark: #141414;
+  --color-nagara-card: #1a1a1a;
+  --color-nagara-card-hover: #222222;
+  --color-nagara-border: #2a2a2a;
+  --color-nagara-green: #00e676;
+  --color-nagara-green-dark: #00c853;
+  --color-nagara-green-glow: rgba(0, 230, 118, 0.3);
+  --color-nagara-green-subtle: rgba(0, 230, 118, 0.08);
+  --color-nagara-white: #f5f5f5;
+  --color-nagara-gray: #888888;
+  --color-nagara-gray-light: #b0b0b0;
+  --color-nagara-blue: #42a5f5;
+  --color-nagara-orange: #ffa726;
+  --color-nagara-red: #ef5350;
+  --color-nagara-purple: #ab47bc;
+  --color-nagara-gold: #ffd54f;
+  --color-nagara-silver: #b0bec5;
+  --color-nagara-bronze: #cd7f32;
+
+  --font-heading: 'Outfit', sans-serif;
+  --font-body: 'Inter', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background: var(--color-nagara-black);
+  color: var(--color-nagara-white);
+  overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+}
+
+/* Glass Card */
+.glass-card {
+  background: rgba(26, 26, 26, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--color-nagara-border);
+  border-radius: 16px;
+}
+
+.glass-card-green {
+  background: rgba(0, 230, 118, 0.05);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(0, 230, 118, 0.15);
+  border-radius: 16px;
+}
+
+/* Glow Effects */
+.glow-green {
+  box-shadow: 0 0 20px var(--color-nagara-green-glow),
+    0 0 60px rgba(0, 230, 118, 0.1);
+}
+
+.glow-green-sm {
+  box-shadow: 0 0 10px rgba(0, 230, 118, 0.2);
+}
+
+.text-glow-green {
+  text-shadow: 0 0 20px var(--color-nagara-green-glow);
+}
+
+/* Gradient Backgrounds */
+.gradient-green {
+  background: linear-gradient(135deg, #00e676, #00c853);
+}
+
+.gradient-dark {
+  background: linear-gradient(180deg, #141414 0%, #0a0a0a 100%);
+}
+
+.gradient-card {
+  background: linear-gradient(145deg, rgba(26, 26, 26, 0.9) 0%, rgba(10, 10, 10, 0.9) 100%);
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse-green {
+
+  0%,
+  100% {
+    box-shadow: 0 0 10px rgba(0, 230, 118, 0.3);
+  }
+
+  50% {
+    box-shadow: 0 0 25px rgba(0, 230, 118, 0.5);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes water-drop {
+  0% {
+    transform: scale(0) translateY(-10px);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(1) translateY(10px);
+    opacity: 0;
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.5s ease-out forwards;
+}
+
+.animate-pulse-green {
+  animation: pulse-green 2s ease-in-out infinite;
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-nagara-border);
+  border-radius: 4px;
+}
+
+/* Hide scrollbar for horizontal scroll */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Badge styles */
+.badge-bronze {
+  background: linear-gradient(135deg, #cd7f32, #a0522d);
+}
+
+.badge-silver {
+  background: linear-gradient(135deg, #c0c0c0, #808080);
+}
+
+.badge-gold {
+  background: linear-gradient(135deg, #ffd700, #daa520);
+}
+
+.badge-master {
+  background: linear-gradient(135deg, #00e676, #00897b);
+}
+
+/* Radar chart styles */
+.radar-grid {
+  stroke: var(--color-nagara-border);
+  fill: none;
+}
+
+.radar-data {
+  fill: rgba(0, 230, 118, 0.15);
+  stroke: var(--color-nagara-green);
+  stroke-width: 2;
+}
+
+/* Before/After slider */
+.ba-slider {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+}
