@@ -14,9 +14,7 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <body className="bg-black-jet min-h-screen">
-        <div className="mx-auto max-w-[430px] min-h-screen relative bg-black-deep overflow-hidden">
-          {children}
-        </div>
+        {children}
       </body>
     </html>
   );
