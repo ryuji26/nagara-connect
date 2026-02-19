@@ -16,48 +16,48 @@ const services = [
   {
     id: 'fast-glass',
     name: 'FAST GLASS',
-    badge: '2-Hour Cure / 3-Year Durability',
+    badge: '2時間硬化 / 3年耐久',
     price: '¥25,000~',
-    description: 'Ultimate glass coating that hardens in 2 hours. Military-grade protection with a mirror-like finish that repels water, dirt, and UV rays.',
+    description: 'わずか2時間で硬化する究極のガラスコーティング。ミリタリーグレードの保護力で、撥水・防汚・UV遮断を実現する鏡面仕上げ。',
     style: 'crystal' as const,
     icon: Sparkles,
-    features: ['Ceramic 9H Hardness', 'Hydrophobic', 'UV Protection'],
+    features: ['セラミック9H硬度', '超撥水', 'UV保護'],
   },
   {
     id: 'asura',
     name: 'ASURA',
-    badge: 'Deep Gloss / Water Repellent',
+    badge: '深艶 / 強撥水',
     price: '¥15,000~',
-    description: 'Legendary coating that delivers an otherworldly deep gloss. Water beads and sheets off the surface like nothing you\'ve seen.',
+    description: '異次元の深い艶を実現する伝説のコーティング。水玉が瞬時に流れ落ちる圧倒的な撥水性能。',
     style: 'asura' as const,
     icon: Zap,
-    features: ['Deep Gloss Finish', 'Self-Cleaning', '1-Year Protection'],
+    features: ['深艶仕上げ', 'セルフクリーニング', '1年保護'],
   },
   {
     id: 'snowmen',
     name: 'SNOWMEN WASH',
-    badge: 'Scratch-less Foam Wash',
+    badge: 'ノースクラッチ泡洗車',
     price: '¥4,000~',
-    description: 'Thick snow foam blankets your vehicle, lifting dirt without touching the paint. The gentlest wash for the most precious surfaces.',
+    description: '極厚のスノーフォームが車体を包み込み、塗装に触れることなく汚れを浮かせて除去。最も大切な愛車のための最も優しい洗車。',
     style: 'snow' as const,
     icon: Droplets,
-    features: ['pH Neutral', 'Zero Contact', 'Paint Safe'],
+    features: ['pH中性', 'ノータッチ', '塗装保護'],
   },
 ];
 
 const statusPhases: { label: string; sub: string; color: string }[] = [
-  { label: 'Applying Snow Foam...', sub: 'Thick foam encapsulating surface contaminants', color: '#ffffff' },
-  { label: 'Polishing with Easy Polish...', sub: 'Restoring factory-fresh clarity to every panel', color: '#ff0033' },
-  { label: 'Curing Fast Glass...', sub: 'Ceramic coating forming molecular bonds', color: '#00ffff' },
-  { label: 'Complete', sub: 'Your vehicle is now protected', color: '#00ff88' },
+  { label: 'スノーフォーム塗布中...', sub: '極厚の泡が汚れを包み込んで浮かせています', color: '#ffffff' },
+  { label: 'イージーポリッシュで研磨中...', sub: '全パネルを新車同様の輝きに復元しています', color: '#ff0033' },
+  { label: 'FAST GLASS 硬化中...', sub: 'セラミックコーティングが分子レベルで結合しています', color: '#00ffff' },
+  { label: '施工完了', sub: 'お客様の愛車は完全に保護されました', color: '#00ff88' },
 ];
 
 const mapPins = [
-  { x: 30, y: 25, name: 'Detailer A', rating: 4.9, delay: 0 },
-  { x: 65, y: 40, name: 'Detailer B', rating: 5.0, delay: 0.3 },
-  { x: 45, y: 65, name: 'Detailer C', rating: 4.8, delay: 0.6 },
-  { x: 75, y: 20, name: 'Detailer D', rating: 4.7, delay: 0.9 },
-  { x: 20, y: 55, name: 'Detailer E', rating: 4.9, delay: 1.2 },
+  { x: 30, y: 25, name: 'TAKA', rating: 4.9, delay: 0 },
+  { x: 65, y: 40, name: 'RYU', rating: 5.0, delay: 0.3 },
+  { x: 45, y: 65, name: 'SORA', rating: 4.8, delay: 0.6 },
+  { x: 75, y: 20, name: 'KEI', rating: 4.7, delay: 0.9 },
+  { x: 20, y: 55, name: 'YUKI', rating: 4.9, delay: 1.2 },
 ];
 
 // ─── COMPONENTS ──────────────────────────────────────────
@@ -194,7 +194,7 @@ function ServiceCard({ service, index, onSelect }: {
           <span className="text-[10px] text-text-muted ml-1">5.0</span>
         </div>
         <div className="flex items-center gap-1 text-xs font-semibold group-hover:gap-2 transition-all" style={{ color: accentColor }}>
-          <span>Select</span>
+          <span>選択</span>
           <ArrowRight size={14} />
         </div>
       </div>
@@ -258,7 +258,7 @@ export default function NagaraProPage() {
             <div>
               <div className="flex items-center gap-1.5">
                 <div className="w-2 h-2 rounded-full bg-asura-red animate-pulse-red" />
-                <span className="font-heading text-[10px] font-bold text-asura-red tracking-[0.3em] uppercase">Live</span>
+                <span className="font-heading text-[10px] font-bold text-asura-red tracking-[0.3em] uppercase">配信中</span>
               </div>
               <h1 className="font-heading text-2xl font-black tracking-tight mt-0.5">
                 NAGARA <span className="text-asura-red">PRO</span>
@@ -278,7 +278,7 @@ export default function NagaraProPage() {
           <div className="px-5 pb-3">
             <div className="glass rounded-xl px-4 py-3 flex items-center gap-3">
               <Search size={16} className="text-text-muted" />
-              <span className="text-sm text-text-muted">Search location or service...</span>
+              <span className="text-sm text-text-muted">場所やサービスを検索...</span>
             </div>
           </div>
 
@@ -350,8 +350,8 @@ export default function NagaraProPage() {
               <div className="glass-strong rounded-t-3xl px-5 pt-3 pb-8">
                 <div className="flex items-center justify-between mb-4">
                   <div>
-                    <h2 className="font-heading text-lg font-bold">Find a Detailer</h2>
-                    <p className="text-xs text-text-secondary mt-0.5">5 professionals nearby</p>
+                    <h2 className="font-heading text-lg font-bold">パートナーを探す</h2>
+                    <p className="text-xs text-text-secondary mt-0.5">近くに5人のプロがいます</p>
                   </div>
                   <ChevronUp size={20} className={`text-text-muted transition-transform ${bottomSheetOpen ? '' : 'rotate-180'}`} />
                 </div>
@@ -359,9 +359,9 @@ export default function NagaraProPage() {
                 {/* Quick actions */}
                 <div className="grid grid-cols-3 gap-2 mb-4">
                   {[
-                    { icon: Car, label: 'My Location', sub: 'Shibuya, Tokyo' },
-                    { icon: Clock, label: 'Schedule', sub: 'Now' },
-                    { icon: Shield, label: 'Insurance', sub: 'Covered' },
+                    { icon: Car, label: '現在地', sub: '渋谷区, 東京' },
+                    { icon: Clock, label: '予約', sub: '今すぐ' },
+                    { icon: Shield, label: '保険', sub: '適用済み' },
                   ].map((item, i) => (
                     <div key={item.label} className="glass rounded-xl p-3 text-center animate-fade-in-up" style={{ animationDelay: `${i * 80}ms` }}>
                       <item.icon size={18} className="mx-auto mb-1.5 text-text-secondary" />
@@ -376,7 +376,7 @@ export default function NagaraProPage() {
                   className="w-full bg-asura-red text-white font-heading font-bold text-sm py-3.5 rounded-xl glow-asura transition-all hover:scale-[1.02] active:scale-[0.98]"
                   onClick={() => setView('menu')}
                 >
-                  Book Premium Detailing →
+                  プレミアム施工を予約する →
                 </button>
               </div>
             </div>
@@ -397,8 +397,8 @@ export default function NagaraProPage() {
               <ChevronLeft size={20} className="text-text-secondary" />
             </button>
             <div className="text-center">
-              <h1 className="font-heading text-base font-bold tracking-wider">SELECT SERVICE</h1>
-              <p className="text-[10px] text-text-muted tracking-[0.2em] uppercase">Premium Lineup</p>
+              <h1 className="font-heading text-base font-bold tracking-wider">メニュー選択</h1>
+              <p className="text-[10px] text-text-muted tracking-[0.2em]">プレミアムラインナップ</p>
             </div>
             <div className="w-10" />
           </div>
@@ -410,12 +410,12 @@ export default function NagaraProPage() {
                 <div className="w-1.5 h-6 rounded-full bg-asura-red" />
                 <div>
                   <span className="font-heading text-xs font-bold tracking-wider">NAGARA PRO</span>
-                  <p className="text-[9px] text-text-muted">Certified Products Only</p>
+                  <p className="text-[9px] text-text-muted">認定製品のみ使用</p>
                 </div>
               </div>
               <div className="flex items-center gap-1">
                 <Shield size={12} className="text-plasma-blue" />
-                <span className="text-[10px] text-plasma-blue font-semibold">Guaranteed</span>
+                <span className="text-[10px] text-plasma-blue font-semibold">品質保証</span>
               </div>
             </div>
           </div>
@@ -434,7 +434,7 @@ export default function NagaraProPage() {
 
           {/* Bottom hint */}
           <div className="px-5 pb-8 text-center animate-fade-in-up" style={{ animationDelay: '500ms' }}>
-            <p className="text-[10px] text-text-muted">All services include complimentary interior wipe-down</p>
+            <p className="text-[10px] text-text-muted">全メニューに室内拭き上げサービスが含まれます</p>
           </div>
         </div>
       )}
@@ -452,10 +452,10 @@ export default function NagaraProPage() {
               <X size={20} className="text-text-secondary" />
             </button>
             <div className="text-center">
-              <h1 className="font-heading text-base font-bold tracking-wider">LIVE STATUS</h1>
+              <h1 className="font-heading text-base font-bold tracking-wider">施工状況</h1>
               <div className="flex items-center justify-center gap-1 mt-0.5">
                 <div className="w-1.5 h-1.5 rounded-full bg-asura-red animate-pulse-red" />
-                <span className="text-[10px] text-asura-red font-semibold tracking-wider">IN PROGRESS</span>
+                <span className="text-[10px] text-asura-red font-semibold tracking-wider">施工中</span>
               </div>
             </div>
             <button className="w-10 h-10 rounded-xl glass flex items-center justify-center">
@@ -470,11 +470,11 @@ export default function NagaraProPage() {
                 <User size={20} className="text-asura-red" />
               </div>
               <div className="flex-1">
-                <p className="font-heading font-bold text-sm">Master Takahashi</p>
+                <p className="font-heading font-bold text-sm">マスター 高橋</p>
                 <div className="flex items-center gap-1 mt-0.5">
                   <Star size={10} fill="#ff0033" stroke="#ff0033" />
                   <span className="text-[10px] text-asura-red font-semibold">5.0</span>
-                  <span className="text-[10px] text-text-muted">• 342 services</span>
+                  <span className="text-[10px] text-text-muted">• 342件の施工</span>
                 </div>
               </div>
               <button className="w-9 h-9 rounded-xl glass flex items-center justify-center">
@@ -514,7 +514,7 @@ export default function NagaraProPage() {
               {statusPhases.slice(0, 3).map((phase, i) => (
                 <div key={i} className="flex items-center gap-2">
                   <div className={`w-2 h-2 rounded-full transition-all duration-500 ${statusPhase > i ? 'bg-white scale-100' :
-                      statusPhase === i ? 'animate-pulse-red' : 'bg-white/20'
+                    statusPhase === i ? 'animate-pulse-red' : 'bg-white/20'
                     }`} style={statusPhase >= i ? { backgroundColor: phase.color } : {}} />
                   {i < 2 && <div className={`w-8 h-px transition-all duration-500 ${statusPhase > i ? 'bg-white/30' : 'bg-white/10'}`} />}
                 </div>
@@ -526,8 +526,8 @@ export default function NagaraProPage() {
           <div className="px-5 pb-6">
             <div className="glass rounded-2xl p-4">
               <div className="flex items-center justify-between mb-3">
-                <span className="text-xs text-text-muted">Selected Service</span>
-                <span className="text-xs text-text-muted">ETA: {Math.max(0, Math.ceil((100 - progress) * 0.6))} min</span>
+                <span className="text-xs text-text-muted">選択サービス</span>
+                <span className="text-xs text-text-muted">残り: 約{Math.max(0, Math.ceil((100 - progress) * 0.6))}分</span>
               </div>
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
@@ -551,7 +551,7 @@ export default function NagaraProPage() {
                 onClick={() => { setView('map'); setProgress(0); }}
               >
                 <Check size={18} />
-                Confirm & Rate
+                確認 & レビュー
               </button>
             </div>
           )}
