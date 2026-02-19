@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import TabBar from "@/components/layout/TabBar";
 
 export const metadata: Metadata = {
-  title: "Nagara Connect | 出張洗車マッチングアプリ",
-  description: "「ながら洗車」公式の出張洗車マッチングアプリ。認定パートナーによる高品質な洗車サービスをお届けします。",
+  title: "NAGARA PRO | Premium On-Demand Car Detailing",
+  description: "Professional car detailing at your doorstep. Powered by NAGARA PRO.",
 };
 
 export default function RootLayout({
@@ -14,10 +13,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ja">
-      <body className="bg-nagara-black min-h-screen">
-        <div className="mx-auto max-w-[430px] min-h-screen relative bg-nagara-dark shadow-2xl">
+      <body className="bg-black-jet min-h-screen">
+        <div className="mx-auto max-w-[430px] min-h-screen relative bg-black-deep overflow-hidden">
           {children}
-          <TabBar />
         </div>
       </body>
     </html>
