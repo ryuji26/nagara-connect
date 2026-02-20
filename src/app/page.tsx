@@ -51,7 +51,7 @@ export default function NagaraProPage() {
       {view === 'home' && (
         <div className="animate-fade-in">
           {/* Header */}
-          <header className="px-6 md:px-12 lg:px-20 pt-5 pb-4 flex items-center justify-between max-w-[1600px] mx-auto">
+          <header className="px-6 md:px-12 lg:px-20 pt-5 pb-4 flex items-center justify-between ">
             <h1 className="font-heading text-xl md:text-2xl font-black tracking-tight">
               NAGARA <span className="text-primary font-display italic">PRO</span>
             </h1>
@@ -61,7 +61,7 @@ export default function NagaraProPage() {
           </header>
 
           {/* Hero */}
-          <section className="px-6 md:px-12 lg:px-20 py-6 md:py-12 max-w-[1600px] mx-auto">
+          <section className="px-6 md:px-12 lg:px-20 py-6 md:py-12 ">
             <div className="relative rounded-[28px] overflow-hidden">
               {/* Background layers */}
               <div className="absolute inset-0 bg-gradient-to-br from-[#0f1b3d] via-[#162a5e] to-[#1a3a8f]" />
@@ -76,7 +76,7 @@ export default function NagaraProPage() {
                   ショップ品質を、<br />
                   <span className="text-accent-gold">あなたの駐車場</span>で。
                 </h2>
-                <p className="text-sm md:text-base text-blue-200/80 max-w-2xl mx-auto leading-relaxed mb-8">
+                <p className="text-sm md:text-base text-blue-200/80 leading-relaxed mb-8">
                   プロの職人がご自宅に出張。Fast Glass認定コーティングから丁寧な手洗いまで、最高品質のカーケアをお届けします。
                 </p>
 
@@ -97,7 +97,7 @@ export default function NagaraProPage() {
           </section>
 
           {/* Service Categories */}
-          <section className="px-6 md:px-12 lg:px-20 pb-10 max-w-[1600px] mx-auto">
+          <section className="px-6 md:px-12 lg:px-20 pb-10 ">
             <div className="flex items-end justify-between mb-5">
               <div>
                 <p className="text-xs font-bold text-accent-gold tracking-[0.2em] uppercase mb-1">Services</p>
@@ -124,7 +124,7 @@ export default function NagaraProPage() {
           </section>
 
           {/* Featured Detailers */}
-          <section className="px-6 md:px-12 lg:px-20 pb-10 max-w-[1600px] mx-auto">
+          <section className="px-6 md:px-12 lg:px-20 pb-10 ">
             <div className="flex items-end justify-between mb-5">
               <div>
                 <p className="text-xs font-bold text-accent-gold tracking-[0.2em] uppercase mb-1">Professionals</p>
@@ -156,7 +156,7 @@ export default function NagaraProPage() {
           </section>
 
           {/* Trust badges */}
-          <section className="px-6 md:px-12 lg:px-20 pb-12 max-w-[1600px] mx-auto">
+          <section className="px-6 md:px-12 lg:px-20 pb-12 ">
             <div className="card-gold p-8 md:p-10">
               <div className="text-center mb-6">
                 <p className="text-xs font-bold text-accent-gold tracking-[0.2em] uppercase mb-1">Trust & Quality</p>
@@ -190,7 +190,7 @@ export default function NagaraProPage() {
       {/* ═══ LIST ═══ */}
       {view === 'list' && (
         <div className="animate-fade-in">
-          <header className="px-6 md:px-12 lg:px-20 pt-5 pb-4 flex items-center gap-3 max-w-[1600px] mx-auto">
+          <header className="px-6 md:px-12 lg:px-20 pt-5 pb-4 flex items-center gap-3 ">
             <button className="w-10 h-10 rounded-2xl border border-border flex items-center justify-center shrink-0 hover:bg-bg-secondary transition-all" onClick={() => setView('home')}><ArrowLeft size={17} className="text-text-secondary" /></button>
             <div className="flex-1">
               <h1 className="font-heading text-base md:text-lg font-bold">{searchArea}の職人</h1>
@@ -198,7 +198,7 @@ export default function NagaraProPage() {
             </div>
           </header>
 
-          <div className="px-6 md:px-12 lg:px-20 pb-3 max-w-[1600px] mx-auto">
+          <div className="px-6 md:px-12 lg:px-20 pb-3 ">
             <div className="flex gap-2 overflow-x-auto pb-1 hide-scrollbar">
               {['おすすめ順', '評価順', '口コミ数順', '本日空きあり'].map((f, i) => (
                 <button key={f} className={`text-xs px-5 py-2.5 rounded-full whitespace-nowrap transition-all border font-semibold ${i === 0 ? 'btn-primary !rounded-full' : 'bg-white text-text-secondary border-border hover:border-primary/30'}`}>{f}</button>
@@ -206,7 +206,7 @@ export default function NagaraProPage() {
             </div>
           </div>
 
-          <div className="px-6 md:px-12 lg:px-20 pb-10 max-w-[1600px] mx-auto space-y-4">
+          <div className="px-6 md:px-12 lg:px-20 pb-10  space-y-4">
             {detailersList.map((d, idx) => (
               <button key={d.id} className="w-full text-left card p-6 md:p-8 group animate-fade-in-up" style={{ animationDelay: `${idx * 80}ms` }} onClick={() => { setSelectedDetailer(d); setView('profile'); }}>
                 <div className="flex gap-5">
@@ -242,13 +242,13 @@ export default function NagaraProPage() {
       {/* ═══ PROFILE ═══ */}
       {view === 'profile' && (
         <div className="animate-fade-in">
-          <header className="px-6 md:px-12 lg:px-20 pt-5 pb-4 flex items-center gap-3 max-w-[1600px] mx-auto">
+          <header className="px-6 md:px-12 lg:px-20 pt-5 pb-4 flex items-center gap-3 ">
             <button className="w-10 h-10 rounded-2xl border border-border flex items-center justify-center shrink-0 hover:bg-bg-secondary transition-all" onClick={() => setView('list')}><ArrowLeft size={17} className="text-text-secondary" /></button>
             <h1 className="font-heading text-base md:text-lg font-bold flex-1">職人プロフィール</h1>
             <button className="p-2" onClick={() => toggleLike(selectedDetailer.id)}><Heart size={20} className={likedIds.includes(selectedDetailer.id) ? 'text-nagara-red fill-nagara-red' : 'text-text-muted'} /></button>
           </header>
 
-          <div className="max-w-[1600px] mx-auto">
+          <div>
             <div className="px-6 md:px-12 pb-6">
               <div className="card p-7 md:p-10">
                 <div className="flex flex-col sm:flex-row items-center sm:items-start gap-5 md:gap-7">
@@ -335,13 +335,13 @@ export default function NagaraProPage() {
       {/* ═══ BOOKING ═══ */}
       {view === 'booking' && (
         <div className="animate-fade-in">
-          <header className="px-6 md:px-12 lg:px-20 pt-5 pb-4 flex items-center gap-3 max-w-[1600px] mx-auto">
+          <header className="px-6 md:px-12 lg:px-20 pt-5 pb-4 flex items-center gap-3 ">
             <button className="w-10 h-10 rounded-2xl border border-border flex items-center justify-center shrink-0 hover:bg-bg-secondary transition-all" onClick={() => setView('profile')}><ArrowLeft size={17} className="text-text-secondary" /></button>
             <h1 className="font-heading text-base md:text-lg font-bold flex-1">予約</h1>
           </header>
 
           {!bookingComplete ? (
-            <div className="max-w-[1600px] mx-auto">
+            <div>
               <div className="px-6 md:px-12 pb-5">
                 <div className="card p-6 md:p-7">
                   <div className="flex items-center gap-3.5 mb-3.5">
@@ -398,7 +398,7 @@ export default function NagaraProPage() {
               </div>
             </div>
           ) : (
-            <div className="max-w-[1600px] mx-auto px-6 md:px-12 py-16 text-center animate-fade-in-up">
+            <div className="px-6 md:px-12 py-16 text-center animate-fade-in-up">
               <div className="w-20 h-20 md:w-24 md:h-24 rounded-full bg-gradient-to-br from-success-light to-emerald-50 border-2 border-success/20 flex items-center justify-center mx-auto mb-6 shadow-lg">
                 <Check size={36} className="text-success md:!w-12 md:!h-12" />
               </div>
