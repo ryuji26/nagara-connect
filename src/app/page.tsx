@@ -68,7 +68,7 @@ export default function NagaraProPage() {
               <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'radial-gradient(circle at 70% 30%, rgba(201,169,110,0.4) 0%, transparent 50%), radial-gradient(circle at 20% 80%, rgba(255,255,255,0.1) 0%, transparent 40%)' }} />
               <div className="absolute top-6 right-8 w-72 h-72 rounded-full bg-accent-gold/5 blur-3xl animate-float" />
 
-              <div className="relative px-8 md:px-14 py-14 md:py-20 text-center">
+              <div className="relative px-8 md:px-14 py-14 md:py-20 flex flex-col items-center justify-center text-center">
                 {/* Gold accent line */}
                 <div className="w-12 h-[3px] bg-gradient-to-r from-accent-gold to-accent-gold-dark rounded-full mb-5 mx-auto" />
                 <p className="text-xs md:text-sm font-semibold tracking-[0.35em] uppercase mb-3 text-accent-gold">Mobile Car Care Revolution</p>
