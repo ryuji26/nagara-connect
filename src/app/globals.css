@@ -15,11 +15,11 @@
   --color-plasma-glow: rgba(0, 255, 255, 0.25);
   --color-plasma-subtle: rgba(0, 255, 255, 0.06);
   --color-text-primary: #ffffff;
-  --color-text-secondary: #a1a1aa;
-  --color-text-muted: #52525b;
-  --color-glass: rgba(255, 255, 255, 0.06);
-  --color-glass-border: rgba(255, 255, 255, 0.08);
-  --color-glass-hover: rgba(255, 255, 255, 0.1);
+  --color-text-secondary: #d4d4d8;
+  --color-text-muted: #8b8b96;
+  --color-glass: rgba(255, 255, 255, 0.08);
+  --color-glass-border: rgba(255, 255, 255, 0.12);
+  --color-glass-hover: rgba(255, 255, 255, 0.15);
 
   --font-heading: 'Outfit', sans-serif;
   --font-body: 'Inter', sans-serif;

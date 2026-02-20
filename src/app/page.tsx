@@ -164,7 +164,7 @@ export default function NagaraProPage() {
             <div className="glass rounded-3xl p-6 md:p-10 relative overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-br from-asura-red/10 via-transparent to-cyan-500/5" />
               <div className="relative">
-                <p className="text-[10px] md:text-xs text-asura-red font-bold tracking-[0.3em] uppercase mb-2">Mobile Car Care Revolution</p>
+                <p className="text-xs md:text-sm text-asura-red font-bold tracking-[0.3em] uppercase mb-2">Mobile Car Care Revolution</p>
                 <h2 className="font-heading text-2xl md:text-4xl font-black leading-tight mb-3">
                   ショップ品質を、<br />
                   <span className="text-asura-red">あなたの駐車場</span>で。
@@ -210,11 +210,11 @@ export default function NagaraProPage() {
                     onClick={() => setView('list')}
                   >
                     {svc.popular && (
-                      <span className="absolute top-2 right-2 text-[8px] md:text-[9px] bg-cyan-500/20 text-cyan-300 px-2 py-0.5 rounded-full font-bold">人気</span>
+                      <span className="absolute top-2 right-2 text-[10px] md:text-xs bg-cyan-500/20 text-cyan-300 px-2 py-0.5 rounded-full font-bold">人気</span>
                     )}
                     <Icon size={24} className="mb-2 md:mb-3 group-hover:scale-110 transition-transform" style={{ color: svc.color }} />
-                    <p className="font-heading text-xs md:text-sm font-bold mb-0.5">{svc.name}</p>
-                    <p className="text-[10px] md:text-xs text-text-muted">{svc.time} • {svc.price}</p>
+                    <p className="font-heading text-sm md:text-base font-bold mb-0.5">{svc.name}</p>
+                    <p className="text-xs md:text-sm text-text-muted">{svc.time} • {svc.price}</p>
                   </button>
                 );
               })}
@@ -241,23 +241,23 @@ export default function NagaraProPage() {
                     </div>
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-1.5">
-                        <p className="font-heading font-bold text-sm md:text-base truncate">{d.name}</p>
+                        <p className="font-heading font-bold text-sm md:text-base">{d.name}</p>
                         <BadgeCheck size={14} className="text-cyan-400 shrink-0" />
                       </div>
                       <div className="flex items-center gap-1 mt-0.5">
                         <Star size={11} fill="#ff0033" stroke="#ff0033" />
-                        <span className="text-[11px] text-asura-red font-bold">{d.rating}</span>
-                        <span className="text-[11px] text-text-muted">({d.reviews}件)</span>
+                        <span className="text-xs text-asura-red font-bold">{d.rating}</span>
+                        <span className="text-xs text-text-muted">({d.reviews}件)</span>
                       </div>
                     </div>
                   </div>
                   <div className="flex flex-wrap gap-1.5 mb-2">
-                    <span className="text-[9px] md:text-[10px] px-2 py-0.5 rounded-full border border-white/10 text-text-secondary">{d.specialty}</span>
-                    <span className="text-[9px] md:text-[10px] px-2 py-0.5 rounded-full border border-cyan-500/20 text-cyan-300">{d.badge}</span>
-                    {d.availableToday && <span className="text-[9px] md:text-[10px] px-2 py-0.5 rounded-full bg-green-500/10 text-green-400 border border-green-500/20">本日空きあり</span>}
+                    <span className="text-[11px] md:text-xs px-2 py-0.5 rounded-full border border-white/10 text-text-secondary">{d.specialty}</span>
+                    <span className="text-[11px] md:text-xs px-2 py-0.5 rounded-full border border-cyan-500/20 text-cyan-300">{d.badge}</span>
+                    {d.availableToday && <span className="text-[11px] md:text-xs px-2 py-0.5 rounded-full bg-green-500/10 text-green-400 border border-green-500/20">本日空きあり</span>}
                   </div>
-                  <p className="text-[10px] md:text-xs text-text-muted flex items-center gap-1">
-                    <MapPin size={10} /> {d.area}
+                  <p className="text-xs md:text-sm text-text-muted flex items-center gap-1">
+                    <MapPin size={12} /> {d.area}
                   </p>
                 </button>
               ))}
@@ -275,8 +275,8 @@ export default function NagaraProPage() {
                 ].map(item => (
                   <div key={item.label}>
                     <item.icon size={22} className="mx-auto mb-2 text-asura-red md:!w-7 md:!h-7" />
-                    <p className="text-[10px] md:text-sm font-bold">{item.label}</p>
-                    <p className="text-[9px] md:text-xs text-text-muted mt-0.5">{item.sub}</p>
+                    <p className="text-xs md:text-sm font-bold">{item.label}</p>
+                    <p className="text-[11px] md:text-xs text-text-muted mt-0.5">{item.sub}</p>
                   </div>
                 ))}
               </div>
@@ -301,7 +301,7 @@ export default function NagaraProPage() {
             </button>
             <div className="flex-1">
               <h1 className="font-heading text-base md:text-lg font-bold">{searchArea}の職人</h1>
-              <p className="text-[10px] md:text-xs text-text-muted">{detailersList.length}件の結果</p>
+              <p className="text-xs md:text-sm text-text-muted">{detailersList.length}件の結果</p>
             </div>
             <div className="glass rounded-xl px-3 py-2 flex items-center gap-1.5">
               <MapPin size={12} className="text-asura-red" />
@@ -313,7 +313,7 @@ export default function NagaraProPage() {
           <div className="px-5 md:px-10 lg:px-16 pb-3 max-w-6xl mx-auto">
             <div className="flex gap-2 overflow-x-auto pb-1">
               {['おすすめ順', '評価順', '口コミ数順', '本日空きあり'].map((f, i) => (
-                <button key={f} className={`text-[10px] md:text-xs px-3 py-1.5 rounded-full whitespace-nowrap transition-all ${i === 0 ? 'bg-asura-red/20 text-asura-red border border-asura-red/30' : 'glass text-text-secondary'
+                <button key={f} className={`text-xs md:text-sm px-3 py-1.5 rounded-full whitespace-nowrap transition-all ${i === 0 ? 'bg-asura-red/20 text-asura-red border border-asura-red/30' : 'glass text-text-secondary'
                   }`}>{f}</button>
               ))}
             </div>
@@ -353,30 +353,30 @@ export default function NagaraProPage() {
                         ))}
                       </div>
                       <span className="text-xs text-asura-red font-bold">{d.rating}</span>
-                      <span className="text-xs text-text-muted">({d.reviews}件の口コミ)</span>
+                      <span className="text-xs text-text-secondary">({d.reviews}件の口コミ)</span>
                     </div>
 
                     {/* Tags */}
                     <div className="flex flex-wrap gap-1.5 mb-2">
-                      <span className="text-[9px] md:text-[10px] px-2 py-0.5 rounded-full border border-white/10 text-text-secondary">{d.specialty}</span>
-                      <span className="text-[9px] md:text-[10px] px-2 py-0.5 rounded-full border border-cyan-500/20 text-cyan-300">{d.badge}</span>
-                      {d.availableToday && <span className="text-[9px] md:text-[10px] px-2 py-0.5 rounded-full bg-green-500/10 text-green-400 border border-green-500/20">本日空きあり</span>}
+                      <span className="text-[11px] md:text-xs px-2.5 py-1 rounded-full border border-white/10 text-text-secondary">{d.specialty}</span>
+                      <span className="text-[11px] md:text-xs px-2.5 py-1 rounded-full border border-cyan-500/20 text-cyan-300">{d.badge}</span>
+                      {d.availableToday && <span className="text-[11px] md:text-xs px-2.5 py-1 rounded-full bg-green-500/10 text-green-400 border border-green-500/20">本日空きあり</span>}
                     </div>
 
                     {/* Area and intro */}
-                    <p className="text-[10px] md:text-xs text-text-muted mb-1.5 flex items-center gap-1">
-                      <MapPin size={10} /> {d.area}
+                    <p className="text-xs md:text-sm text-text-muted mb-1.5 flex items-center gap-1">
+                      <MapPin size={12} /> {d.area}
                     </p>
-                    <p className="text-[10px] md:text-xs text-text-secondary line-clamp-2">{d.intro}</p>
+                    <p className="text-xs md:text-sm text-text-secondary">{d.intro}</p>
 
                     {/* Top review snippet */}
                     <div className="mt-2 glass rounded-lg p-2.5 md:p-3">
                       <div className="flex items-center gap-1 mb-1">
                         <ThumbsUp size={10} className="text-cyan-400" />
-                        <span className="text-[9px] md:text-[10px] text-cyan-400 font-semibold">注目の口コミ</span>
+                        <span className="text-[11px] md:text-xs text-cyan-400 font-semibold">注目の口コミ</span>
                       </div>
-                      <p className="text-[10px] md:text-xs text-text-secondary line-clamp-1">&ldquo;{d.topReview.text}&rdquo;</p>
-                      <p className="text-[9px] text-text-muted mt-0.5">{d.topReview.name} • {d.topReview.car}</p>
+                      <p className="text-xs md:text-sm text-text-secondary">&ldquo;{d.topReview.text}&rdquo;</p>
+                      <p className="text-[11px] text-text-muted mt-0.5">{d.topReview.name} • {d.topReview.car}</p>
                     </div>
                   </div>
                 </div>
@@ -418,15 +418,15 @@ export default function NagaraProPage() {
                       <div className="flex items-center gap-1">
                         <Star size={14} fill="#ff0033" stroke="#ff0033" />
                         <span className="text-sm text-asura-red font-bold">{selectedDetailer.rating}</span>
-                        <span className="text-xs text-text-muted">({selectedDetailer.reviews}件)</span>
+                        <span className="text-xs text-text-secondary">({selectedDetailer.reviews}件)</span>
                       </div>
-                      <span className="text-xs text-text-muted">•</span>
-                      <span className="text-xs text-text-muted">{selectedDetailer.jobs}件の施工実績</span>
+                      <span className="text-xs text-text-secondary">•</span>
+                      <span className="text-xs text-text-secondary">{selectedDetailer.jobs}件の施工実績</span>
                     </div>
                     <div className="flex flex-wrap justify-center sm:justify-start gap-1.5 mb-3">
-                      <span className="text-[10px] md:text-xs px-2.5 py-1 rounded-full border border-white/10 text-text-secondary">{selectedDetailer.specialty}</span>
-                      <span className="text-[10px] md:text-xs px-2.5 py-1 rounded-full border border-cyan-500/20 text-cyan-300">{selectedDetailer.badge}</span>
-                      <span className="text-[10px] md:text-xs px-2.5 py-1 rounded-full border border-white/10 text-text-secondary flex items-center gap-1"><MapPin size={10} />{selectedDetailer.area}</span>
+                      <span className="text-xs md:text-sm px-2.5 py-1 rounded-full border border-white/10 text-text-secondary">{selectedDetailer.specialty}</span>
+                      <span className="text-xs md:text-sm px-2.5 py-1 rounded-full border border-cyan-500/20 text-cyan-300">{selectedDetailer.badge}</span>
+                      <span className="text-xs md:text-sm px-2.5 py-1 rounded-full border border-white/10 text-text-secondary flex items-center gap-1"><MapPin size={12} />{selectedDetailer.area}</span>
                     </div>
                     <p className="text-xs md:text-sm text-text-secondary leading-relaxed">{selectedDetailer.intro}</p>
 
@@ -464,13 +464,13 @@ export default function NagaraProPage() {
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-2">
                           <p className="font-heading font-bold text-sm md:text-base">{svc.name}</p>
-                          {svc.popular && <span className="text-[8px] md:text-[9px] bg-cyan-500/20 text-cyan-300 px-1.5 py-0.5 rounded-full font-bold">人気</span>}
+                          {svc.popular && <span className="text-[10px] md:text-xs bg-cyan-500/20 text-cyan-300 px-1.5 py-0.5 rounded-full font-bold">人気</span>}
                         </div>
-                        <p className="text-[10px] md:text-xs text-text-muted mt-0.5">{svc.time} • {svc.description}</p>
+                        <p className="text-xs md:text-sm text-text-secondary mt-0.5">{svc.time} • {svc.description}</p>
                       </div>
                       <div className="text-right shrink-0">
                         <p className="font-heading font-bold text-sm md:text-base" style={{ color: svc.color }}>{price}</p>
-                        <p className="text-[9px] md:text-[10px] text-text-muted group-hover:text-asura-red transition-colors">予約する →</p>
+                        <p className="text-[11px] md:text-xs text-text-muted group-hover:text-asura-red transition-colors">予約する →</p>
                       </div>
                     </button>
                   );
@@ -490,7 +490,7 @@ export default function NagaraProPage() {
                     <div className="flex gap-0.5">
                       {[...Array(5)].map((_, i) => <Star key={i} size={14} fill="#ff0033" stroke="#ff0033" />)}
                     </div>
-                    <p className="text-[10px] text-text-muted mt-0.5">{selectedDetailer.reviews}件の口コミ</p>
+                    <p className="text-xs text-text-muted mt-0.5">{selectedDetailer.reviews}件の口コミ</p>
                   </div>
                 </div>
                 <div className="border-t border-white/5 pt-3">
@@ -498,7 +498,7 @@ export default function NagaraProPage() {
                     <div className="flex items-center gap-1">
                       {[...Array(selectedDetailer.topReview.rating)].map((_, i) => <Star key={i} size={10} fill="#ff0033" stroke="#ff0033" />)}
                     </div>
-                    <span className="text-[9px] text-text-muted">{selectedDetailer.topReview.name} • {selectedDetailer.topReview.car}</span>
+                    <span className="text-xs text-text-secondary">{selectedDetailer.topReview.name} • {selectedDetailer.topReview.car}</span>
                   </div>
                   <p className="text-xs md:text-sm text-text-secondary leading-relaxed">&ldquo;{selectedDetailer.topReview.text}&rdquo;</p>
                 </div>
@@ -531,7 +531,7 @@ export default function NagaraProPage() {
                     </div>
                     <div>
                       <p className="font-heading font-bold text-sm md:text-base">{selectedDetailer.name}</p>
-                      <p className="text-[10px] md:text-xs text-text-muted flex items-center gap-1"><Star size={10} fill="#ff0033" stroke="#ff0033" />{selectedDetailer.rating} • {selectedDetailer.area}</p>
+                      <p className="text-xs md:text-sm text-text-secondary flex items-center gap-1"><Star size={10} fill="#ff0033" stroke="#ff0033" />{selectedDetailer.rating} • {selectedDetailer.area}</p>
                     </div>
                   </div>
                   <div className="border-t border-white/5 pt-3 flex items-center justify-between">
@@ -539,7 +539,7 @@ export default function NagaraProPage() {
                       <selectedService.icon size={16} style={{ color: selectedService.color }} />
                       <div>
                         <p className="text-sm font-bold">{selectedService.name}</p>
-                        <p className="text-[10px] text-text-muted">{selectedService.time}</p>
+                        <p className="text-xs text-text-secondary">{selectedService.time}</p>
                       </div>
                     </div>
                     <span className="font-heading font-bold text-base" style={{ color: selectedService.color }}>
@@ -561,7 +561,7 @@ export default function NagaraProPage() {
                         }`}
                       onClick={() => setSelectedDate(i)}
                     >
-                      <span className={`text-[10px] md:text-xs mb-1 ${selectedDate === i ? 'text-white/80' : 'text-text-muted'}`}>
+                      <span className={`text-xs md:text-sm mb-1 ${selectedDate === i ? 'text-white/80' : 'text-text-muted'}`}>
                         {d.isToday ? '今日' : d.weekday}
                       </span>
                       <span className="font-heading font-bold text-lg md:text-xl">{d.day}</span>
@@ -582,7 +582,7 @@ export default function NagaraProPage() {
                       return (
                         <button key={t}
                           className={`py-2.5 md:py-3 rounded-xl text-xs md:text-sm font-semibold transition-all ${selectedTime === t ? 'bg-asura-red text-white glow-asura' :
-                              available ? 'glass text-text-secondary hover:border-white/20' : 'glass text-text-muted/30 cursor-not-allowed opacity-40'
+                            available ? 'glass text-text-secondary hover:border-white/20' : 'glass text-text-muted/30 cursor-not-allowed opacity-40'
                             }`}
                           onClick={() => available && setSelectedTime(t)}
                           disabled={!available}
@@ -600,8 +600,8 @@ export default function NagaraProPage() {
                 <div className="glass rounded-xl p-3 md:p-4 flex items-start gap-2.5">
                   <Shield size={16} className="text-cyan-400 mt-0.5 shrink-0" />
                   <div>
-                    <p className="text-[10px] md:text-xs font-semibold text-cyan-400">賠償責任保険付き</p>
-                    <p className="text-[9px] md:text-[11px] text-text-muted mt-0.5">施設所有者賠償責任保険・自動車管理者賠償責任保険に加入しています。万が一の際も安心です。</p>
+                    <p className="text-xs md:text-sm font-semibold text-cyan-400">賠償責任保険付き</p>
+                    <p className="text-xs md:text-sm text-text-secondary mt-0.5">施設所有者賠償責任保険・自動車管理者賠償責任保険に加入しています。万が一の際も安心です。</p>
                   </div>
                 </div>
               </div>
@@ -610,8 +610,8 @@ export default function NagaraProPage() {
               <div className="px-5 md:px-10 pb-8">
                 <button
                   className={`w-full font-heading font-bold text-sm md:text-base py-3.5 md:py-4 rounded-xl transition-all flex items-center justify-center gap-2 ${selectedDate !== null && selectedTime
-                      ? 'bg-asura-red text-white glow-asura hover:scale-[1.02] active:scale-[0.98]'
-                      : 'glass text-text-muted cursor-not-allowed'
+                    ? 'bg-asura-red text-white glow-asura hover:scale-[1.02] active:scale-[0.98]'
+                    : 'glass text-text-muted cursor-not-allowed'
                     }`}
                   disabled={selectedDate === null || !selectedTime}
                   onClick={() => setBookingComplete(true)}
@@ -634,20 +634,20 @@ export default function NagaraProPage() {
               <div className="glass rounded-2xl p-5 md:p-6 text-left mb-6 max-w-md mx-auto">
                 <div className="space-y-3">
                   <div className="flex justify-between">
-                    <span className="text-xs text-text-muted">職人</span>
-                    <span className="text-xs font-bold">{selectedDetailer.name}</span>
+                    <span className="text-sm text-text-secondary">職人</span>
+                    <span className="text-sm font-bold">{selectedDetailer.name}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-xs text-text-muted">メニュー</span>
-                    <span className="text-xs font-bold">{selectedService.name}</span>
+                    <span className="text-sm text-text-secondary">メニュー</span>
+                    <span className="text-sm font-bold">{selectedService.name}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-xs text-text-muted">日時</span>
-                    <span className="text-xs font-bold">{dates[selectedDate || 0]?.day}日 ({dates[selectedDate || 0]?.weekday}) {selectedTime}</span>
+                    <span className="text-sm text-text-secondary">日時</span>
+                    <span className="text-sm font-bold">{dates[selectedDate || 0]?.day}日 ({dates[selectedDate || 0]?.weekday}) {selectedTime}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-xs text-text-muted">施工時間</span>
-                    <span className="text-xs font-bold">{selectedService.time}</span>
+                    <span className="text-sm text-text-secondary">施工時間</span>
+                    <span className="text-sm font-bold">{selectedService.time}</span>
                   </div>
                   <div className="border-t border-white/5 pt-3 flex justify-between">
                     <span className="text-sm font-bold">合計</span>
