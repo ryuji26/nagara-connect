@@ -161,7 +161,7 @@ export default function NagaraProPage() {
 
           {/* Hero */}
           <section className="px-5 md:px-10 lg:px-16 py-6 md:py-10 max-w-6xl mx-auto">
-            <div className="glass rounded-3xl p-6 md:p-10 relative overflow-hidden">
+            <div className="glass rounded-3xl p-8 md:p-12 relative overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-br from-asura-red/10 via-transparent to-cyan-500/5" />
               <div className="relative">
                 <p className="text-xs md:text-sm text-asura-red font-bold tracking-[0.3em] uppercase mb-2">Mobile Car Care Revolution</p>
@@ -206,7 +206,7 @@ export default function NagaraProPage() {
                 const Icon = svc.icon;
                 return (
                   <button key={svc.id}
-                    className="glass rounded-2xl p-4 md:p-5 text-left group hover:border-white/20 transition-all relative overflow-hidden"
+                    className="glass rounded-2xl p-5 md:p-6 text-left group hover:border-white/20 transition-all relative overflow-hidden"
                     onClick={() => setView('list')}
                   >
                     {svc.popular && (
@@ -232,7 +232,7 @@ export default function NagaraProPage() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4">
               {detailersList.slice(0, 3).map(d => (
                 <button key={d.id}
-                  className="glass rounded-2xl p-4 md:p-5 text-left hover:border-white/20 transition-all group"
+                  className="glass rounded-2xl p-5 md:p-6 text-left hover:border-white/20 transition-all group"
                   onClick={() => { setSelectedDetailer(d); setView('profile'); }}
                 >
                   <div className="flex items-center gap-3 mb-3">
@@ -266,7 +266,7 @@ export default function NagaraProPage() {
 
           {/* Trust badges */}
           <section className="px-5 md:px-10 lg:px-16 pb-10 max-w-6xl mx-auto">
-            <div className="glass rounded-2xl p-5 md:p-6">
+            <div className="glass rounded-2xl p-6 md:p-8">
               <div className="grid grid-cols-3 gap-4 text-center">
                 {[
                   { icon: Shield, label: '賠償責任保険付', sub: '万が一も安心' },
@@ -323,7 +323,7 @@ export default function NagaraProPage() {
           <div className="px-5 md:px-10 lg:px-16 pb-8 max-w-6xl mx-auto space-y-3 md:space-y-4">
             {detailersList.map((d, idx) => (
               <button key={d.id}
-                className="w-full text-left glass rounded-2xl p-4 md:p-6 hover:border-white/20 transition-all group animate-fade-in-up"
+                className="w-full text-left glass rounded-2xl p-5 md:p-7 hover:border-white/20 transition-all group animate-fade-in-up"
                 style={{ animationDelay: `${idx * 80}ms` }}
                 onClick={() => { setSelectedDetailer(d); setView('profile'); }}
               >
@@ -370,7 +370,7 @@ export default function NagaraProPage() {
                     <p className="text-xs md:text-sm text-text-secondary">{d.intro}</p>
 
                     {/* Top review snippet */}
-                    <div className="mt-2 glass rounded-lg p-2.5 md:p-3">
+                    <div className="mt-3 glass rounded-xl p-3 md:p-4">
                       <div className="flex items-center gap-1 mb-1">
                         <ThumbsUp size={10} className="text-cyan-400" />
                         <span className="text-[11px] md:text-xs text-cyan-400 font-semibold">注目の口コミ</span>
@@ -404,7 +404,7 @@ export default function NagaraProPage() {
           <div className="max-w-4xl mx-auto">
             {/* Profile header */}
             <div className="px-5 md:px-10 pb-6">
-              <div className="glass rounded-3xl p-5 md:p-8">
+              <div className="glass rounded-3xl p-6 md:p-10">
                 <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 md:gap-6">
                   <div className="w-20 h-20 md:w-28 md:h-28 rounded-2xl bg-gradient-to-br from-asura-red/20 to-asura-red/5 border border-asura-red/20 flex items-center justify-center shrink-0">
                     <User size={36} className="text-asura-red md:!w-12 md:!h-12" />
@@ -454,7 +454,7 @@ export default function NagaraProPage() {
                   const price = selectedDetailer.menuPrices[svc.id as keyof typeof selectedDetailer.menuPrices];
                   return (
                     <button key={svc.id}
-                      className={`w-full text-left glass rounded-xl p-4 md:p-5 flex items-center gap-3 md:gap-4 transition-all hover:border-white/20 group ${svc.popular ? 'ring-1 ring-cyan-400/20' : ''
+                      className={`w-full text-left glass rounded-xl p-5 md:p-6 flex items-center gap-4 md:gap-5 transition-all hover:border-white/20 group ${svc.popular ? 'ring-1 ring-cyan-400/20' : ''
                         }`}
                       onClick={() => { setSelectedService(svc); setView('booking'); setBookingComplete(false); setSelectedDate(null); setSelectedTime(null); }}
                     >
@@ -483,7 +483,7 @@ export default function NagaraProPage() {
               <h3 className="font-heading text-sm md:text-base font-bold mb-3 flex items-center gap-2">
                 <Star size={16} className="text-asura-red" /> 口コミ ({selectedDetailer.reviews}件)
               </h3>
-              <div className="glass rounded-2xl p-4 md:p-5">
+              <div className="glass rounded-2xl p-5 md:p-6">
                 <div className="flex items-center gap-2 mb-3">
                   <span className="font-heading text-3xl font-black text-asura-red">{selectedDetailer.rating}</span>
                   <div>
@@ -524,7 +524,7 @@ export default function NagaraProPage() {
             <div className="max-w-4xl mx-auto">
               {/* Selected service & detailer */}
               <div className="px-5 md:px-10 pb-4">
-                <div className="glass rounded-2xl p-4 md:p-5">
+                <div className="glass rounded-2xl p-5 md:p-6">
                   <div className="flex items-center gap-3 mb-3">
                     <div className="w-10 h-10 rounded-xl bg-asura-red/20 border border-asura-red/20 flex items-center justify-center">
                       <User size={18} className="text-asura-red" />
@@ -597,7 +597,7 @@ export default function NagaraProPage() {
 
               {/* Insurance note */}
               <div className="px-5 md:px-10 pb-4">
-                <div className="glass rounded-xl p-3 md:p-4 flex items-start gap-2.5">
+                <div className="glass rounded-xl p-4 md:p-5 flex items-start gap-3">
                   <Shield size={16} className="text-cyan-400 mt-0.5 shrink-0" />
                   <div>
                     <p className="text-xs md:text-sm font-semibold text-cyan-400">賠償責任保険付き</p>
@@ -631,7 +631,7 @@ export default function NagaraProPage() {
               <p className="text-sm md:text-base text-text-secondary mb-8">
                 {selectedDetailer.name}さんが{dates[selectedDate || 0]?.day}日 {selectedTime}にお伺いします。
               </p>
-              <div className="glass rounded-2xl p-5 md:p-6 text-left mb-6 max-w-md mx-auto">
+              <div className="glass rounded-2xl p-6 md:p-8 text-left mb-6 max-w-md mx-auto">
                 <div className="space-y-3">
                   <div className="flex justify-between">
                     <span className="text-sm text-text-secondary">職人</span>
