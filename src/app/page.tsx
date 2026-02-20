@@ -80,8 +80,8 @@ export default function NagaraProPage() {
                   プロの職人がご自宅に出張。Fast Glass認定コーティングから丁寧な手洗いまで、最高品質のカーケアをお届けします。
                 </p>
 
-                <div className="flex flex-col sm:flex-row gap-3 max-w-xl mx-auto">
-                  <div className="flex-1 bg-white/10 backdrop-blur-md rounded-2xl px-5 py-3.5 flex items-center gap-2.5 border border-white/15">
+                <div className="flex flex-col sm:flex-row gap-3 max-w-xl mx-auto justify-center">
+                  <div className="bg-white/10 backdrop-blur-md rounded-2xl px-5 py-3.5 flex items-center gap-2.5 border border-white/15 min-w-[200px]">
                     <MapPin size={16} className="text-accent-gold shrink-0" />
                     <select className="bg-transparent text-sm w-full outline-none text-white appearance-none cursor-pointer" value={searchArea} onChange={(e) => setSearchArea(e.target.value)}>
                       {areas.map(a => <option key={a} value={a} className="text-text-primary bg-white">{a}</option>)}
