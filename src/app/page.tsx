@@ -9,10 +9,10 @@ import {
 } from 'lucide-react';
 
 const services = [
-  { id: 'quick-wash', name: 'クイックウォッシュ', time: '約30分', price: '¥4,400~', description: 'スノーフォームによるノータッチ洗車。室内拭き上げ付。', icon: Droplets, color: '#1a3a8f', bgColor: '#e8edf8' },
-  { id: 'skin-improvement', name: '肌改善スタンダード', time: '約60分', price: '¥12,000~', description: 'BASE（下地処理剤）で傷埋め＋表面安定化。見違えるような艶に。', icon: Sparkles, color: '#c9a96e', bgColor: '#f8f3eb' },
-  { id: 'night-luster', name: 'ナイトラスタープレミアム', time: '約110分', price: '¥25,000~', description: '旗艦サービス。Fast Glass（2時間硬化ガラスコーティング）で究極の鏡面仕上げ。', icon: Diamond, color: '#1a3a8f', bgColor: '#e8edf8', popular: true },
-  { id: 'restore-pro', name: 'リストアプロ', time: '約3.5時間', price: '¥60,000~', description: '深い傷や経年劣化を精密に復元。新車以上の輝きを取り戻す最高峰。', icon: Zap, color: '#c9a96e', bgColor: '#f8f3eb' },
+  { id: 'quick-wash', name: 'クイックウォッシュ', time: '約30分', price: '¥4,400~', description: 'スノーフォームによるノータッチ洗車。室内拭き上げ付。', icon: Droplets, color: '#1a3a8f', bgColor: '#e8edf8', image: '/images/quick-wash.png' },
+  { id: 'skin-improvement', name: '肌改善スタンダード', time: '約60分', price: '¥12,000~', description: 'BASE（下地処理剤）で傷埋め＋表面安定化。見違えるような艶に。', icon: Sparkles, color: '#c9a96e', bgColor: '#f8f3eb', image: '/images/skin-improvement.png' },
+  { id: 'night-luster', name: 'ナイトラスタープレミアム', time: '約110分', price: '¥25,000~', description: '旗艦サービス。Fast Glass（2時間硬化ガラスコーティング）で究極の鏡面仕上げ。', icon: Diamond, color: '#1a3a8f', bgColor: '#e8edf8', popular: true, image: '/images/night-luster.png' },
+  { id: 'restore-pro', name: 'リストアプロ', time: '約3.5時間', price: '¥60,000~', description: '深い傷や経年劣化を精密に復元。新車以上の輝きを取り戻す最高峰。', icon: Zap, color: '#c9a96e', bgColor: '#f8f3eb', image: '/images/restore-pro.png' },
 ];
 
 const areas = ['渋谷区', '新宿区', '港区', '世田谷区', '目黒区', '品川区'];
@@ -68,19 +68,19 @@ export default function NagaraProPage() {
               <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'radial-gradient(circle at 70% 30%, rgba(201,169,110,0.4) 0%, transparent 50%), radial-gradient(circle at 20% 80%, rgba(255,255,255,0.1) 0%, transparent 40%)' }} />
               <div className="absolute top-6 right-8 w-72 h-72 rounded-full bg-accent-gold/5 blur-3xl animate-float" />
 
-              <div className="relative px-8 md:px-14 py-12 md:py-16">
+              <div className="relative px-8 md:px-14 py-14 md:py-20 text-center">
                 {/* Gold accent line */}
-                <div className="w-12 h-[3px] bg-gradient-to-r from-accent-gold to-accent-gold-dark rounded-full mb-5" />
+                <div className="w-12 h-[3px] bg-gradient-to-r from-accent-gold to-accent-gold-dark rounded-full mb-5 mx-auto" />
                 <p className="text-xs md:text-sm font-semibold tracking-[0.35em] uppercase mb-3 text-accent-gold">Mobile Car Care Revolution</p>
                 <h2 className="font-heading text-3xl md:text-5xl font-black leading-[1.15] mb-4 text-white">
                   ショップ品質を、<br />
                   <span className="text-accent-gold">あなたの駐車場</span>で。
                 </h2>
-                <p className="text-sm md:text-base text-blue-200/80 max-w-lg leading-relaxed mb-8">
+                <p className="text-sm md:text-base text-blue-200/80 max-w-2xl mx-auto leading-relaxed mb-8">
                   プロの職人がご自宅に出張。Fast Glass認定コーティングから丁寧な手洗いまで、最高品質のカーケアをお届けします。
                 </p>
 
-                <div className="flex flex-col sm:flex-row gap-3 max-w-xl">
+                <div className="flex flex-col sm:flex-row gap-3 max-w-xl mx-auto">
                   <div className="flex-1 bg-white/10 backdrop-blur-md rounded-2xl px-5 py-3.5 flex items-center gap-2.5 border border-white/15">
                     <MapPin size={16} className="text-accent-gold shrink-0" />
                     <select className="bg-transparent text-sm w-full outline-none text-white appearance-none cursor-pointer" value={searchArea} onChange={(e) => setSearchArea(e.target.value)}>
@@ -106,15 +106,17 @@ export default function NagaraProPage() {
             </div>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               {services.map(svc => {
-                const Icon = svc.icon;
                 return (
-                  <button key={svc.id} className={`card p-6 md:p-7 text-left group ${svc.popular ? 'ring-2 ring-primary/15' : ''}`} onClick={() => setView('list')}>
-                    {svc.popular && <span className="badge badge-gold mb-2"><Crown size={10} />人気</span>}
-                    <div className="w-12 h-12 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform" style={{ background: svc.bgColor }}>
-                      <Icon size={22} style={{ color: svc.color }} />
+                  <button key={svc.id} className={`card text-left group overflow-hidden ${svc.popular ? 'ring-2 ring-primary/15' : ''}`} onClick={() => setView('list')}>
+                    {/* Image */}
+                    <div className="relative h-36 md:h-44 overflow-hidden">
+                      <img src={svc.image} alt={svc.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                      {svc.popular && <span className="badge badge-gold absolute top-3 left-3 shadow-md"><Crown size={10} />人気</span>}
                     </div>
-                    <p className="font-heading text-sm md:text-base font-bold mb-1">{svc.name}</p>
-                    <p className="text-xs md:text-sm text-text-muted leading-relaxed">{svc.time} • {svc.price}</p>
+                    <div className="p-5 md:p-6">
+                      <p className="font-heading text-sm md:text-base font-bold mb-1">{svc.name}</p>
+                      <p className="text-xs md:text-sm text-text-muted leading-relaxed">{svc.time} • {svc.price}</p>
+                    </div>
                   </button>
                 );
               })}
