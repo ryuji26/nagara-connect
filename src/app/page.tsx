@@ -161,8 +161,8 @@ export default function NagaraProPage() {
 
           {/* Hero */}
           <section className="px-5 md:px-10 lg:px-16 py-6 md:py-10 max-w-6xl mx-auto">
-            <div className="glass rounded-3xl p-8 md:p-12 relative overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-asura-red/10 via-transparent to-cyan-500/5" />
+            <div className="glass rounded-3xl p-8 md:p-12 relative">
+              <div className="absolute inset-0 bg-gradient-to-br from-asura-red/10 via-transparent to-cyan-500/5 rounded-3xl" />
               <div className="relative">
                 <p className="text-xs md:text-sm text-asura-red font-bold tracking-[0.3em] uppercase mb-2">Mobile Car Care Revolution</p>
                 <h2 className="font-heading text-2xl md:text-4xl font-black leading-tight mb-3">
@@ -206,11 +206,11 @@ export default function NagaraProPage() {
                 const Icon = svc.icon;
                 return (
                   <button key={svc.id}
-                    className="glass rounded-2xl p-5 md:p-6 text-left group hover:border-white/20 transition-all relative overflow-hidden"
+                    className="glass rounded-2xl p-5 md:p-6 text-left group hover:border-white/20 transition-all relative"
                     onClick={() => setView('list')}
                   >
                     {svc.popular && (
-                      <span className="absolute top-2 right-2 text-[10px] md:text-xs bg-cyan-500/20 text-cyan-300 px-2 py-0.5 rounded-full font-bold">人気</span>
+                      <span className="text-[10px] md:text-xs bg-cyan-500/20 text-cyan-300 px-2 py-0.5 rounded-full font-bold inline-block mb-2">人気</span>
                     )}
                     <Icon size={24} className="mb-2 md:mb-3 group-hover:scale-110 transition-transform" style={{ color: svc.color }} />
                     <p className="font-heading text-sm md:text-base font-bold mb-0.5">{svc.name}</p>

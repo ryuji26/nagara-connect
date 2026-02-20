@@ -41,6 +41,8 @@ body {
   background: var(--color-black-jet);
   color: var(--color-text-primary);
   overflow-x: hidden;
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 h1,
@@ -58,6 +60,7 @@ h6 {
   backdrop-filter: blur(24px) saturate(1.4);
   -webkit-backdrop-filter: blur(24px) saturate(1.4);
   border: 1px solid var(--color-glass-border);
+  overflow: visible;
 }
 
 .glass-strong {
@@ -65,6 +68,7 @@ h6 {
   backdrop-filter: blur(40px) saturate(1.8);
   -webkit-backdrop-filter: blur(40px) saturate(1.8);
   border: 1px solid rgba(255, 255, 255, 0.12);
+  overflow: visible;
 }
 
 /* Asura Red Glow */
