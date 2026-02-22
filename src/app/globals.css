@@ -164,6 +164,29 @@ h6 {
   pointer-events: none;
 }
 
+/* ── Premium card (特上) ── */
+.card-premium {
+  position: relative;
+  background: linear-gradient(135deg, #fffdf6, #f8f0e0, #fffdf6);
+  border: 2px solid transparent;
+  border-image: linear-gradient(135deg, #c9a96e, #e8d5a8, #a3844e, #c9a96e) 1;
+  border-radius: 20px;
+  box-shadow:
+    var(--shadow-md),
+    0 0 40px rgba(201, 169, 110, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  overflow: hidden;
+}
+
+.card-premium::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(135deg, rgba(201, 169, 110, 0.06), transparent 60%, rgba(201, 169, 110, 0.04));
+  pointer-events: none;
+}
+
 /* ── Chip styles for visit/dropoff ── */
 .chip {
   display: inline-flex;

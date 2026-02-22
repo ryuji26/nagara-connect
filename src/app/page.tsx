@@ -8,7 +8,7 @@ import {
   ArrowLeft, Diamond, Heart, ThumbsUp, Award, BadgeCheck,
   Phone, MessageCircle, ChevronDown, Crown, Car,
   Truck, Home as HomeIcon, Wallet, LogIn, UserPlus,
-  ArrowRight
+  ArrowRight, CircleDollarSign
 } from 'lucide-react';
 
 /* ══════════════════════════════════════════
@@ -17,28 +17,32 @@ import {
 
 const services = [
   {
-    id: 'quick-wash', rank: '梅', name: 'クイックウォッシュ',
-    time: '約30分', price: '¥4,400〜', priceNum: 4400,
-    description: 'スノーフォームによるノータッチ洗車。室内拭き上げ付き。忙しい方にも最適。',
-    icon: Droplets, color: '#1a3a8f', bgColor: '#e8edf8', image: '/images/quick-wash.png',
+    id: 'standard', rank: '梅', name: 'スタンダード',
+    time: '約60分', price: '¥5,500〜', priceNum: 5500,
+    description: '手軽に艶と撥水を復活。定期メンテナンスに最適な基本コース。',
+    features: ['手洗い洗車', '簡易コーティング', '室内清掃'],
+    icon: Droplets, color: '#1a3a8f', bgColor: '#e8edf8',
   },
   {
-    id: 'skin-improvement', rank: '竹', name: '肌改善スタンダード',
-    time: '約60分', price: '¥12,000〜', priceNum: 12000,
-    description: 'BASE（下地処理剤）で傷埋め＋表面安定化。見違えるような艶に。',
-    icon: Sparkles, color: '#c9a96e', bgColor: '#f8f3eb', image: '/images/skin-improvement.png',
+    id: 'detox', rank: '竹', name: 'デトックス',
+    time: '約90分', price: '¥11,000〜', priceNum: 11000,
+    description: '徹底下地処理＋選べるコーティング。汚れを根本からリセット。',
+    features: ['徹底下地処理', '鉄粉除去', '選べるコーティング'],
+    icon: Sparkles, color: '#c9a96e', bgColor: '#f8f3eb',
   },
   {
-    id: 'night-luster', rank: '松', name: 'ナイトラスタープレミアム',
-    time: '約110分', price: '¥25,000〜', priceNum: 25000,
-    description: 'Fast Glass（2時間硬化ガラスコーティング）で究極の鏡面仕上げ。旗艦サービス。',
-    icon: Diamond, color: '#1a3a8f', bgColor: '#e8edf8', popular: true, image: '/images/night-luster.png',
+    id: 'detox-glass', rank: '松', name: 'デトックス＋ガラス',
+    time: '約120分', price: '¥22,000〜', priceNum: 22000,
+    description: 'ファストガラス施工。極上の艶と長期間持続する圧倒的保護力。',
+    features: ['徹底下地処理', 'Fast Glass施工', '最大2年持続'],
+    icon: Diamond, color: '#1a3a8f', bgColor: '#e8edf8', popular: true,
   },
   {
-    id: 'restore-pro', rank: '特上', name: 'リストアプロ',
-    time: '約3.5時間', price: '¥60,000〜', priceNum: 60000,
-    description: '深い傷や経年劣化を精密に復元。新車以上の輝きを取り戻す最高峰メニュー。',
-    icon: Zap, color: '#c9a96e', bgColor: '#f8f3eb', image: '/images/restore-pro.png',
+    id: 'detox-polish', rank: '特上', name: 'デトックス＋研磨',
+    time: '約240分', price: '¥50,000〜', priceNum: 50000,
+    description: '検定合格職人限定。研磨で傷を完全除去し、究極の美観を再生する最高峰メニュー。',
+    features: ['精密機械研磨', '傷・水ジミ完全除去', 'ガラスコーティング仕上げ'],
+    icon: Zap, color: '#c9a96e', bgColor: '#f8f3eb', premium: true,
   },
 ];
 
@@ -50,11 +54,11 @@ const prefectures: Record<string, string[]> = {
 };
 
 const detailersList = [
-  { id: 1, name: '高橋 匠', rating: 4.9, reviews: 128, jobs: 342, specialty: 'コーティング', badge: 'マスター認定', area: '渋谷区・目黒区', intro: 'Fast Glass認定施工者。10年以上の経験を持ち、高級車ディテイリングを専門としています。', availableToday: true, visitOk: true, dropoffOk: true, topReview: { name: '田中様', car: 'レクサス RX', text: '仕上がりに感動しました。水弾きが全然違います。丁寧な作業で安心して任せられました。', rating: 5 }, menuPrices: { 'quick-wash': '¥4,400', 'skin-improvement': '¥12,000', 'night-luster': '¥25,000', 'restore-pro': '¥60,000' } },
-  { id: 2, name: '佐藤 竜', rating: 5.0, reviews: 203, jobs: 518, specialty: '研磨', badge: 'グランドマスター', area: '新宿区・中野区', intro: '研磨のスペシャリスト。深い傷も丁寧に除去し、新車以上の輝きを実現。', availableToday: true, visitOk: true, dropoffOk: false, topReview: { name: '鈴木様', car: 'BMW M3', text: '3年放置した水ジミが完全に消えました。プロの技術に脱帽です。', rating: 5 }, menuPrices: { 'quick-wash': '¥4,400', 'skin-improvement': '¥13,000', 'night-luster': '¥27,000', 'restore-pro': '¥65,000' } },
-  { id: 3, name: '田中 空', rating: 4.8, reviews: 87, jobs: 256, specialty: '洗車・メンテナンス', badge: 'エキスパート', area: '港区・千代田区', intro: '丁寧で素早い洗車が定評。忙しいビジネスマンから厚い支持。', availableToday: false, visitOk: true, dropoffOk: true, topReview: { name: '山田様', car: 'メルセデス Cクラス', text: '毎月お願いしています。いつも期待以上の仕上がりです。', rating: 5 }, menuPrices: { 'quick-wash': '¥4,400', 'skin-improvement': '¥12,000', 'night-luster': '¥25,000', 'restore-pro': '¥60,000' } },
-  { id: 4, name: '鈴木 慶', rating: 4.7, reviews: 64, jobs: 189, specialty: 'レストア', badge: 'エキスパート', area: '世田谷区・杉並区', intro: '旧車・クラシックカーのレストアが得意。最適な施工プランをご提案。', availableToday: true, visitOk: false, dropoffOk: true, topReview: { name: '伊藤様', car: 'ポルシェ 911', text: '30年前の車がここまで蘇るとは。素晴らしい技術です。', rating: 5 }, menuPrices: { 'quick-wash': '¥4,400', 'skin-improvement': '¥12,000', 'night-luster': '¥26,000', 'restore-pro': '¥62,000' } },
-  { id: 5, name: '山本 雪', rating: 4.9, reviews: 156, jobs: 401, specialty: 'コーティング', badge: 'マスター認定', area: '品川区・大田区', intro: '女性ならではの細やかな気配りと確かな技術。アフターフォローも丁寧。', availableToday: true, visitOk: true, dropoffOk: true, topReview: { name: '中村様', car: 'テスラ Model 3', text: '説明が丁寧で、施工前後の違いもしっかり見せてくれました。', rating: 5 }, menuPrices: { 'quick-wash': '¥4,400', 'skin-improvement': '¥12,000', 'night-luster': '¥25,000', 'restore-pro': '¥60,000' } },
+  { id: 1, name: '高橋 匠', rating: 4.9, reviews: 128, jobs: 342, specialty: 'コーティング', badge: 'マスター認定', area: '渋谷区・目黒区', intro: 'Fast Glass認定施工者。10年以上の経験を持ち、高級車ディテイリングを専門としています。', availableToday: true, visitOk: true, dropoffOk: true, topReview: { name: '田中様', car: 'レクサス RX', text: '仕上がりに感動しました。水弾きが全然違います。丁寧な作業で安心して任せられました。', rating: 5 }, menuPrices: { 'standard': '¥5,500', 'detox': '¥11,000', 'detox-glass': '¥22,000', 'detox-polish': '¥50,000' } },
+  { id: 2, name: '佐藤 竜', rating: 5.0, reviews: 203, jobs: 518, specialty: '研磨', badge: 'グランドマスター', area: '新宿区・中野区', intro: '研磨のスペシャリスト。深い傷も丁寧に除去し、新車以上の輝きを実現。', availableToday: true, visitOk: true, dropoffOk: false, topReview: { name: '鈴木様', car: 'BMW M3', text: '3年放置した水ジミが完全に消えました。プロの技術に脱帽です。', rating: 5 }, menuPrices: { 'standard': '¥5,500', 'detox': '¥12,000', 'detox-glass': '¥24,000', 'detox-polish': '¥55,000' } },
+  { id: 3, name: '田中 空', rating: 4.8, reviews: 87, jobs: 256, specialty: '洗車・メンテナンス', badge: 'エキスパート', area: '港区・千代田区', intro: '丁寧で素早い洗車が定評。忙しいビジネスマンから厚い支持。', availableToday: false, visitOk: true, dropoffOk: true, topReview: { name: '山田様', car: 'メルセデス Cクラス', text: '毎月お願いしています。いつも期待以上の仕上がりです。', rating: 5 }, menuPrices: { 'standard': '¥5,500', 'detox': '¥11,000', 'detox-glass': '¥22,000', 'detox-polish': '¥50,000' } },
+  { id: 4, name: '鈴木 慶', rating: 4.7, reviews: 64, jobs: 189, specialty: 'レストア', badge: 'エキスパート', area: '世田谷区・杉並区', intro: '旧車・クラシックカーのレストアが得意。最適な施工プランをご提案。', availableToday: true, visitOk: false, dropoffOk: true, topReview: { name: '伊藤様', car: 'ポルシェ 911', text: '30年前の車がここまで蘇るとは。素晴らしい技術です。', rating: 5 }, menuPrices: { 'standard': '¥5,500', 'detox': '¥11,000', 'detox-glass': '¥23,000', 'detox-polish': '¥52,000' } },
+  { id: 5, name: '山本 雪', rating: 4.9, reviews: 156, jobs: 401, specialty: 'コーティング', badge: 'マスター認定', area: '品川区・大田区', intro: '女性ならではの細やかな気配りと確かな技術。アフターフォローも丁寧。', availableToday: true, visitOk: true, dropoffOk: true, topReview: { name: '中村様', car: 'テスラ Model 3', text: '説明が丁寧で、施工前後の違いもしっかり見せてくれました。', rating: 5 }, menuPrices: { 'standard': '¥5,500', 'detox': '¥11,000', 'detox-glass': '¥22,000', 'detox-polish': '¥50,000' } },
 ];
 
 const timeSlots = ['10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00'];
@@ -201,58 +205,70 @@ export default function NagaraProPage() {
             </div>
           </section>
 
-          {/* ── 3. WHY CHOOSE US ── */}
+          {/* ── 3. TRUST & QUALITY ── */}
           <section className="max-w-6xl mx-auto px-5 md:px-10 lg:px-16 py-16 md:py-24">
             <div className="text-center mb-10 md:mb-14">
-              <p className="text-xs font-bold text-accent-gold tracking-[0.25em] uppercase mb-2">Why Choose Us</p>
+              <p className="text-xs font-bold text-accent-gold tracking-[0.25em] uppercase mb-2">Trust &amp; Quality</p>
               <h3 className="font-heading text-2xl md:text-3xl font-black">
-                NAGARA PRO が選ばれる理由
+                安心と品質のお約束
               </h3>
+              <p className="text-sm text-text-muted mt-3 max-w-lg mx-auto">
+                大切な愛車をお預かりする責任を、制度と品質で担保します。
+              </p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
               {[
                 {
                   icon: Shield,
-                  title: '公認の高品質施工',
-                  desc: 'ながら洗車公認の職人が、Fast Glass / BASEなど厳選されたプロダクトのみを使用。ショップ品質の施工をお約束します。',
+                  title: '全件保険適用',
+                  desc: '運営側で請負業者賠償責任保険等に加入。万が一の作業中の事故や物損も完全補償いたします。',
                   accent: '#1a3a8f',
                   bg: 'from-primary-light to-primary-subtle',
+                  badge: '安心補償',
                 },
                 {
-                  icon: Wallet,
-                  title: '明朗会計・事前見積もり',
-                  desc: 'マイカー登録で車種・サイズに応じた料金が事前に確定。追加費用の心配なし。安心してご依頼いただけます。',
+                  icon: Award,
+                  title: '認定職人のみ',
+                  desc: '厳格な技術検定をクリアした職人だけが在籍。確かなスキルと丁寧な対応をお約束します。',
                   accent: '#c9a96e',
                   bg: 'from-accent-gold-light to-[#faf5ec]',
+                  badge: '技術保証',
                 },
                 {
-                  icon: MapPin,
-                  title: '選べる施工場所',
-                  desc: 'ご自宅への「出張」はもちろん、職人宅への「持ち込み」にも対応。ライフスタイルに合わせた柔軟なサービス。',
+                  icon: CircleDollarSign,
+                  title: '明朗会計',
+                  desc: '事前車種登録でサイズ別料金が確定。不透明な追加費用は一切ありません。',
                   accent: '#0d9668',
                   bg: 'from-success-light to-emerald-50',
+                  badge: '明確な料金',
                 },
               ].map(item => (
-                <div key={item.title} className="card p-7 md:p-9 text-center group">
-                  <div className={`w-16 h-16 md:w-18 md:h-18 rounded-2xl bg-gradient-to-br ${item.bg} flex items-center justify-center mx-auto mb-5 group-hover:scale-110 transition-transform duration-300`}>
-                    <item.icon size={28} style={{ color: item.accent }} />
+                <div key={item.title} className="card p-8 md:p-10 text-center group relative overflow-hidden">
+                  {/* Subtle top accent line */}
+                  <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r opacity-60" style={{ backgroundImage: `linear-gradient(to right, transparent, ${item.accent}, transparent)` }} />
+
+                  <div className={`w-20 h-20 md:w-24 md:h-24 rounded-3xl bg-gradient-to-br ${item.bg} flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-md`}>
+                    <item.icon size={36} className="md:!w-11 md:!h-11" style={{ color: item.accent }} />
                   </div>
-                  <h4 className="font-heading text-base md:text-lg font-bold mb-3">{item.title}</h4>
-                  <p className="text-sm text-text-secondary leading-relaxed">{item.desc}</p>
+                  <span className="inline-block text-[0.65rem] font-bold tracking-wider uppercase px-3 py-1 rounded-full mb-3" style={{ backgroundColor: `${item.accent}10`, color: item.accent }}>
+                    {item.badge}
+                  </span>
+                  <h4 className="font-heading text-lg md:text-xl font-black mb-3">{item.title}</h4>
+                  <p className="text-sm md:text-base text-text-secondary leading-relaxed">{item.desc}</p>
                 </div>
               ))}
             </div>
           </section>
 
-          {/* ── 4. MENU & PRICING ── */}
+          {/* ── 4. SERVICES ── */}
           <section className="bg-bg-secondary py-16 md:py-24">
             <div className="max-w-6xl mx-auto px-5 md:px-10 lg:px-16">
               <div className="text-center mb-10 md:mb-14">
-                <p className="text-xs font-bold text-accent-gold tracking-[0.25em] uppercase mb-2">Menu & Pricing</p>
-                <h3 className="font-heading text-2xl md:text-3xl font-black">メニューと料金の目安</h3>
+                <p className="text-xs font-bold text-accent-gold tracking-[0.25em] uppercase mb-2">Services</p>
+                <h3 className="font-heading text-2xl md:text-3xl font-black">メニューから探す</h3>
                 <p className="text-sm text-text-muted mt-3 max-w-lg mx-auto">
                   4つのコースからお車の状態やご要望に合わせてお選びください。<br className="hidden md:block" />
-                  サイズ別の料金は各メニュー詳細をご確認ください。
+                  <span className="inline-block mt-1 text-xs bg-bg px-3 py-1 rounded-full border border-border">※ 価格はMサイズ基準</span>
                 </p>
               </div>
 
@@ -260,56 +276,113 @@ export default function NagaraProPage() {
                 {services.map(svc => {
                   const Icon = svc.icon;
                   const isPopular = svc.popular;
+                  const isPremium = (svc as any).premium;
                   return (
                     <div
                       key={svc.id}
-                      className={`relative bg-white rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1 ${isPopular ? 'pricing-highlight ring-0' : 'border border-border shadow-md'}`}
+                      className={`relative rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1 flex flex-col ${isPremium
+                        ? 'card-premium border-0'
+                        : isPopular
+                          ? 'pricing-highlight ring-0 bg-white'
+                          : 'bg-white border border-border shadow-md'
+                        }`}
                     >
-                      {/* Popular badge */}
+                      {/* Top badge */}
                       {isPopular && (
                         <div className="bg-gradient-to-r from-accent-gold to-accent-gold-dark text-white text-xs font-bold text-center py-2 tracking-wider">
                           <Crown size={12} className="inline mr-1 -mt-0.5" />一番人気
                         </div>
                       )}
-
-                      {/* Image */}
-                      <div className="relative h-40 md:h-44 overflow-hidden">
-                        <img src={svc.image} alt={svc.name} className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
-                        <div className="absolute top-3 left-3">
-                          <span className={`text-xs font-black px-3 py-1 rounded-lg ${isPopular ? 'bg-accent-gold text-white' : 'bg-white/90 text-text-primary shadow-sm'}`}>
-                            {svc.rank}
-                          </span>
+                      {isPremium && (
+                        <div className="bg-gradient-to-r from-[#2a1810] via-[#5a3a28] to-[#2a1810] text-accent-gold text-xs font-bold text-center py-2.5 tracking-wider">
+                          <Crown size={12} className="inline mr-1 -mt-0.5" />★ 検定合格職人限定
                         </div>
-                      </div>
+                      )}
 
-                      {/* Content */}
-                      <div className="p-5 md:p-6">
-                        <h4 className="font-heading font-bold text-base md:text-lg mb-1">{svc.name}</h4>
-                        <div className="flex items-center gap-2 text-text-muted text-xs mb-3">
-                          <Clock size={12} />
-                          <span>{svc.time}</span>
+                      {/* Card content */}
+                      <div className="p-6 md:p-7 flex flex-col flex-1">
+                        {/* Rank & Icon */}
+                        <div className="flex items-center gap-3 mb-4">
+                          <div className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0" style={{ background: svc.bgColor }}>
+                            <Icon size={22} style={{ color: svc.color }} />
+                          </div>
+                          <div>
+                            <span className={`text-xs font-black tracking-wide ${isPremium ? 'text-accent-gold' : 'text-text-muted'}`}>
+                              【{svc.rank}】
+                            </span>
+                            <h4 className="font-heading font-bold text-base md:text-lg leading-tight">{svc.name}</h4>
+                          </div>
                         </div>
+
+                        {/* Price & Time */}
+                        <div className="mb-4">
+                          <p className={`font-heading font-black text-2xl md:text-3xl ${isPremium ? 'text-accent-gold-dark' : isPopular ? 'text-accent-gold-dark' : 'text-primary'}`}>
+                            {svc.price}
+                          </p>
+                          <div className="flex items-center gap-1.5 text-text-muted text-xs mt-1">
+                            <Clock size={12} />
+                            <span>{svc.time}</span>
+                          </div>
+                        </div>
+
+                        {/* Description */}
                         <p className="text-xs md:text-sm text-text-secondary leading-relaxed mb-4">
                           {svc.description}
                         </p>
-                        <div className="flex items-end justify-between">
-                          <div>
-                            <p className="text-xs text-text-muted">Sサイズ〜</p>
-                            <p className={`font-heading font-black text-xl md:text-2xl ${isPopular ? 'text-accent-gold-dark' : 'text-primary'}`}>
-                              {svc.price}
-                            </p>
-                          </div>
-                          <Link
-                            href={`/menu/${svc.id}`}
-                            className={`px-4 py-2 rounded-xl text-xs font-bold transition-all active:scale-95 ${isPopular ? 'bg-accent-gold hover:bg-accent-gold-dark text-white shadow-md' : 'bg-primary-light hover:bg-primary-subtle text-primary'}`}
-                          >
-                            詳細を見る
-                          </Link>
+
+                        {/* Features */}
+                        <div className="space-y-2 mb-5 flex-1">
+                          {svc.features?.map(f => (
+                            <div key={f} className="flex items-center gap-2 text-xs md:text-sm text-text-secondary">
+                              <Check size={14} className={`shrink-0 ${isPremium ? 'text-accent-gold' : 'text-success'}`} />
+                              <span>{f}</span>
+                            </div>
+                          ))}
                         </div>
+
+                        {/* CTA Button */}
+                        <Link
+                          href={`/menu/${svc.id}`}
+                          className={`w-full text-center px-4 py-3 rounded-xl text-sm font-bold transition-all active:scale-95 block ${isPremium
+                            ? 'bg-gradient-to-r from-[#2a1810] via-[#5a3a28] to-[#2a1810] text-accent-gold shadow-lg hover:shadow-xl'
+                            : isPopular
+                              ? 'bg-accent-gold hover:bg-accent-gold-dark text-white shadow-md'
+                              : 'bg-primary-light hover:bg-primary-subtle text-primary'
+                            }`}
+                        >
+                          詳細を見る
+                        </Link>
                       </div>
                     </div>
                   );
                 })}
+              </div>
+
+              {/* ── OPTION MENU ── */}
+              <div className="mt-10 md:mt-14">
+                <div className="text-center mb-5">
+                  <p className="text-xs font-bold text-text-muted tracking-[0.15em] uppercase mb-1">Options</p>
+                  <h4 className="font-heading text-base md:text-lg font-bold">オプションメニュー</h4>
+                </div>
+                <div className="flex flex-wrap justify-center gap-3 md:gap-4">
+                  {[
+                    { icon: Sparkles, label: 'ホイール・タイヤ洗浄', desc: '足回りの汚れを徹底除去' },
+                    { icon: Droplets, label: '窓ガラスのウロコ落とし＆撥水', desc: '視界クリア・雨天も安心' },
+                  ].map(opt => (
+                    <div
+                      key={opt.label}
+                      className="flex items-center gap-3 bg-white border border-border rounded-2xl px-5 py-4 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all cursor-default"
+                    >
+                      <div className="w-10 h-10 rounded-xl bg-primary-light flex items-center justify-center shrink-0">
+                        <opt.icon size={18} className="text-primary" />
+                      </div>
+                      <div>
+                        <p className="text-sm font-bold text-text-primary">{opt.label}</p>
+                        <p className="text-xs text-text-muted">{opt.desc}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </section>
@@ -470,261 +543,268 @@ export default function NagaraProPage() {
             </div>
           </footer>
         </div>
-      )}
+      )
+      }
 
       {/* ═══════════════════════════════════════════════
           LIST VIEW (既存維持)
           ═══════════════════════════════════════════════ */}
-      {view === 'list' && (
-        <div className="animate-fade-in">
-          <header className="px-6 md:px-12 lg:px-20 pt-5 pb-4 flex items-center gap-3 ">
-            <button className="w-10 h-10 rounded-2xl border border-border flex items-center justify-center shrink-0 hover:bg-bg-secondary transition-all" onClick={() => setView('home')}><ArrowLeft size={17} className="text-text-secondary" /></button>
-            <div className="flex-1">
-              <h1 className="font-heading text-base md:text-lg font-bold">{selectedCity}の職人</h1>
-              <p className="text-xs text-text-muted">{detailersList.length}件の結果</p>
-            </div>
-          </header>
+      {
+        view === 'list' && (
+          <div className="animate-fade-in">
+            <header className="px-6 md:px-12 lg:px-20 pt-5 pb-4 flex items-center gap-3 ">
+              <button className="w-10 h-10 rounded-2xl border border-border flex items-center justify-center shrink-0 hover:bg-bg-secondary transition-all" onClick={() => setView('home')}><ArrowLeft size={17} className="text-text-secondary" /></button>
+              <div className="flex-1">
+                <h1 className="font-heading text-base md:text-lg font-bold">{selectedCity}の職人</h1>
+                <p className="text-xs text-text-muted">{detailersList.length}件の結果</p>
+              </div>
+            </header>
 
-          <div className="px-6 md:px-12 lg:px-20 pb-3 ">
-            <div className="flex gap-2 overflow-x-auto pb-1 hide-scrollbar">
-              {['おすすめ順', '評価順', '口コミ数順', '本日空きあり'].map((f, i) => (
-                <button key={f} className={`text-xs px-5 py-2.5 rounded-full whitespace-nowrap transition-all border font-semibold ${i === 0 ? 'btn-primary !rounded-full' : 'bg-white text-text-secondary border-border hover:border-primary/30'}`}>{f}</button>
+            <div className="px-6 md:px-12 lg:px-20 pb-3 ">
+              <div className="flex gap-2 overflow-x-auto pb-1 hide-scrollbar">
+                {['おすすめ順', '評価順', '口コミ数順', '本日空きあり'].map((f, i) => (
+                  <button key={f} className={`text-xs px-5 py-2.5 rounded-full whitespace-nowrap transition-all border font-semibold ${i === 0 ? 'btn-primary !rounded-full' : 'bg-white text-text-secondary border-border hover:border-primary/30'}`}>{f}</button>
+                ))}
+              </div>
+            </div>
+
+            <div className="px-6 md:px-12 lg:px-20 pb-10  space-y-4">
+              {detailersList.map((d, idx) => (
+                <button key={d.id} className="w-full text-left card p-6 md:p-8 group animate-fade-in-up" style={{ animationDelay: `${idx * 80}ms` }} onClick={() => { setSelectedDetailer(d); setView('profile'); }}>
+                  <div className="flex gap-5">
+                    <div className="w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-gradient-to-br from-primary-light to-primary-subtle flex items-center justify-center shrink-0">
+                      <User size={28} className="text-primary md:!w-9 md:!h-9" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center justify-between mb-1">
+                        <div className="flex items-center gap-1.5"><h3 className="font-heading font-bold text-base md:text-lg">{d.name}</h3><BadgeCheck size={15} className="text-primary" /></div>
+                        <button className="p-1.5" onClick={(e) => { e.stopPropagation(); toggleLike(d.id); }}><Heart size={18} className={likedIds.includes(d.id) ? 'text-nagara-red fill-nagara-red' : 'text-text-muted'} /></button>
+                      </div>
+                      <div className="flex items-center gap-2 mb-3"><Stars5 rating={d.rating} /><span className="text-xs text-star font-bold">{d.rating}</span><span className="text-xs text-text-muted">({d.reviews}件)</span></div>
+                      <div className="flex flex-wrap gap-1.5 mb-2">
+                        <span className="badge badge-neutral">{d.specialty}</span>
+                        <span className="badge badge-primary">{d.badge}</span>
+                        {d.availableToday && <span className="badge badge-success">本日空きあり</span>}
+                      </div>
+                      <div className="flex gap-1.5 mb-2">
+                        {d.visitOk && <span className="chip chip-visit"><Truck size={10} />出張OK</span>}
+                        {d.dropoffOk && <span className="chip chip-dropoff"><HomeIcon size={10} />持ち込みOK</span>}
+                      </div>
+                      <p className="text-xs text-text-muted mb-2 flex items-center gap-1"><MapPin size={12} />{d.area}</p>
+                      <p className="text-sm text-text-secondary leading-relaxed">{d.intro}</p>
+                      <div className="mt-4 bg-bg-secondary rounded-2xl p-4 border border-border-light">
+                        <div className="flex items-center gap-1.5 mb-1.5"><ThumbsUp size={12} className="text-primary" /><span className="text-xs text-primary font-semibold">注目の口コミ</span></div>
+                        <p className="text-sm text-text-secondary">&ldquo;{d.topReview.text}&rdquo;</p>
+                        <p className="text-xs text-text-muted mt-1.5">{d.topReview.name} • {d.topReview.car}</p>
+                      </div>
+                    </div>
+                  </div>
+                </button>
               ))}
             </div>
           </div>
-
-          <div className="px-6 md:px-12 lg:px-20 pb-10  space-y-4">
-            {detailersList.map((d, idx) => (
-              <button key={d.id} className="w-full text-left card p-6 md:p-8 group animate-fade-in-up" style={{ animationDelay: `${idx * 80}ms` }} onClick={() => { setSelectedDetailer(d); setView('profile'); }}>
-                <div className="flex gap-5">
-                  <div className="w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-gradient-to-br from-primary-light to-primary-subtle flex items-center justify-center shrink-0">
-                    <User size={28} className="text-primary md:!w-9 md:!h-9" />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-center justify-between mb-1">
-                      <div className="flex items-center gap-1.5"><h3 className="font-heading font-bold text-base md:text-lg">{d.name}</h3><BadgeCheck size={15} className="text-primary" /></div>
-                      <button className="p-1.5" onClick={(e) => { e.stopPropagation(); toggleLike(d.id); }}><Heart size={18} className={likedIds.includes(d.id) ? 'text-nagara-red fill-nagara-red' : 'text-text-muted'} /></button>
-                    </div>
-                    <div className="flex items-center gap-2 mb-3"><Stars5 rating={d.rating} /><span className="text-xs text-star font-bold">{d.rating}</span><span className="text-xs text-text-muted">({d.reviews}件)</span></div>
-                    <div className="flex flex-wrap gap-1.5 mb-2">
-                      <span className="badge badge-neutral">{d.specialty}</span>
-                      <span className="badge badge-primary">{d.badge}</span>
-                      {d.availableToday && <span className="badge badge-success">本日空きあり</span>}
-                    </div>
-                    <div className="flex gap-1.5 mb-2">
-                      {d.visitOk && <span className="chip chip-visit"><Truck size={10} />出張OK</span>}
-                      {d.dropoffOk && <span className="chip chip-dropoff"><HomeIcon size={10} />持ち込みOK</span>}
-                    </div>
-                    <p className="text-xs text-text-muted mb-2 flex items-center gap-1"><MapPin size={12} />{d.area}</p>
-                    <p className="text-sm text-text-secondary leading-relaxed">{d.intro}</p>
-                    <div className="mt-4 bg-bg-secondary rounded-2xl p-4 border border-border-light">
-                      <div className="flex items-center gap-1.5 mb-1.5"><ThumbsUp size={12} className="text-primary" /><span className="text-xs text-primary font-semibold">注目の口コミ</span></div>
-                      <p className="text-sm text-text-secondary">&ldquo;{d.topReview.text}&rdquo;</p>
-                      <p className="text-xs text-text-muted mt-1.5">{d.topReview.name} • {d.topReview.car}</p>
-                    </div>
-                  </div>
-                </div>
-              </button>
-            ))}
-          </div>
-        </div>
-      )}
+        )
+      }
 
       {/* ═══════════════════════════════════════════════
           PROFILE VIEW (既存維持)
           ═══════════════════════════════════════════════ */}
-      {view === 'profile' && (
-        <div className="animate-fade-in">
-          <header className="px-6 md:px-12 lg:px-20 pt-5 pb-4 flex items-center gap-3 ">
-            <button className="w-10 h-10 rounded-2xl border border-border flex items-center justify-center shrink-0 hover:bg-bg-secondary transition-all" onClick={() => setView('list')}><ArrowLeft size={17} className="text-text-secondary" /></button>
-            <h1 className="font-heading text-base md:text-lg font-bold flex-1">職人プロフィール</h1>
-            <button className="p-2" onClick={() => toggleLike(selectedDetailer.id)}><Heart size={20} className={likedIds.includes(selectedDetailer.id) ? 'text-nagara-red fill-nagara-red' : 'text-text-muted'} /></button>
-          </header>
+      {
+        view === 'profile' && (
+          <div className="animate-fade-in">
+            <header className="px-6 md:px-12 lg:px-20 pt-5 pb-4 flex items-center gap-3 ">
+              <button className="w-10 h-10 rounded-2xl border border-border flex items-center justify-center shrink-0 hover:bg-bg-secondary transition-all" onClick={() => setView('list')}><ArrowLeft size={17} className="text-text-secondary" /></button>
+              <h1 className="font-heading text-base md:text-lg font-bold flex-1">職人プロフィール</h1>
+              <button className="p-2" onClick={() => toggleLike(selectedDetailer.id)}><Heart size={20} className={likedIds.includes(selectedDetailer.id) ? 'text-nagara-red fill-nagara-red' : 'text-text-muted'} /></button>
+            </header>
 
-          <div>
-            <div className="px-6 md:px-12 pb-6">
-              <div className="card p-7 md:p-10">
-                <div className="flex flex-col sm:flex-row items-center sm:items-start gap-5 md:gap-7">
-                  <div className="w-20 h-20 md:w-28 md:h-28 rounded-2xl bg-gradient-to-br from-primary-light to-primary-subtle flex items-center justify-center shrink-0 shadow-md">
-                    <User size={36} className="text-primary md:!w-12 md:!h-12" />
-                  </div>
-                  <div className="flex-1 text-center sm:text-left">
-                    <div className="flex items-center justify-center sm:justify-start gap-2 mb-1.5">
-                      <h2 className="font-heading text-2xl md:text-3xl font-black">{selectedDetailer.name}</h2>
-                      <BadgeCheck size={20} className="text-primary" />
+            <div>
+              <div className="px-6 md:px-12 pb-6">
+                <div className="card p-7 md:p-10">
+                  <div className="flex flex-col sm:flex-row items-center sm:items-start gap-5 md:gap-7">
+                    <div className="w-20 h-20 md:w-28 md:h-28 rounded-2xl bg-gradient-to-br from-primary-light to-primary-subtle flex items-center justify-center shrink-0 shadow-md">
+                      <User size={36} className="text-primary md:!w-12 md:!h-12" />
                     </div>
-                    <div className="flex items-center justify-center sm:justify-start gap-3 mb-3">
-                      <div className="flex items-center gap-1"><Stars5 rating={selectedDetailer.rating} /><span className="text-sm text-star font-bold ml-1">{selectedDetailer.rating}</span><span className="text-xs text-text-muted">({selectedDetailer.reviews}件)</span></div>
-                      <span className="text-xs text-text-muted">•</span>
-                      <span className="text-xs text-text-muted">{selectedDetailer.jobs}件施工</span>
-                    </div>
-                    <div className="flex flex-wrap justify-center sm:justify-start gap-1.5 mb-2">
-                      <span className="badge badge-neutral">{selectedDetailer.specialty}</span>
-                      <span className="badge badge-gold">{selectedDetailer.badge}</span>
-                      <span className="badge badge-neutral"><MapPin size={10} />{selectedDetailer.area}</span>
-                    </div>
-                    <div className="flex flex-wrap justify-center sm:justify-start gap-1.5 mb-4">
-                      {selectedDetailer.visitOk && <span className="chip chip-visit"><Truck size={10} />出張OK</span>}
-                      {selectedDetailer.dropoffOk && <span className="chip chip-dropoff"><HomeIcon size={10} />持ち込みOK</span>}
-                    </div>
-                    <p className="text-sm text-text-secondary leading-relaxed">{selectedDetailer.intro}</p>
-                    <div className="flex gap-2.5 mt-5">
-                      <button className="border border-border rounded-2xl px-5 py-2.5 flex items-center gap-1.5 text-sm font-semibold text-text-secondary hover:bg-bg-secondary transition-all"><Phone size={14} /> 電話</button>
-                      <button className="border border-primary/20 bg-primary-subtle rounded-2xl px-5 py-2.5 flex items-center gap-1.5 text-sm font-semibold text-primary hover:bg-primary-light transition-all"><MessageCircle size={14} /> メッセージ</button>
+                    <div className="flex-1 text-center sm:text-left">
+                      <div className="flex items-center justify-center sm:justify-start gap-2 mb-1.5">
+                        <h2 className="font-heading text-2xl md:text-3xl font-black">{selectedDetailer.name}</h2>
+                        <BadgeCheck size={20} className="text-primary" />
+                      </div>
+                      <div className="flex items-center justify-center sm:justify-start gap-3 mb-3">
+                        <div className="flex items-center gap-1"><Stars5 rating={selectedDetailer.rating} /><span className="text-sm text-star font-bold ml-1">{selectedDetailer.rating}</span><span className="text-xs text-text-muted">({selectedDetailer.reviews}件)</span></div>
+                        <span className="text-xs text-text-muted">•</span>
+                        <span className="text-xs text-text-muted">{selectedDetailer.jobs}件施工</span>
+                      </div>
+                      <div className="flex flex-wrap justify-center sm:justify-start gap-1.5 mb-2">
+                        <span className="badge badge-neutral">{selectedDetailer.specialty}</span>
+                        <span className="badge badge-gold">{selectedDetailer.badge}</span>
+                        <span className="badge badge-neutral"><MapPin size={10} />{selectedDetailer.area}</span>
+                      </div>
+                      <div className="flex flex-wrap justify-center sm:justify-start gap-1.5 mb-4">
+                        {selectedDetailer.visitOk && <span className="chip chip-visit"><Truck size={10} />出張OK</span>}
+                        {selectedDetailer.dropoffOk && <span className="chip chip-dropoff"><HomeIcon size={10} />持ち込みOK</span>}
+                      </div>
+                      <p className="text-sm text-text-secondary leading-relaxed">{selectedDetailer.intro}</p>
+                      <div className="flex gap-2.5 mt-5">
+                        <button className="border border-border rounded-2xl px-5 py-2.5 flex items-center gap-1.5 text-sm font-semibold text-text-secondary hover:bg-bg-secondary transition-all"><Phone size={14} /> 電話</button>
+                        <button className="border border-primary/20 bg-primary-subtle rounded-2xl px-5 py-2.5 flex items-center gap-1.5 text-sm font-semibold text-primary hover:bg-primary-light transition-all"><MessageCircle size={14} /> メッセージ</button>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
 
-            {/* Menu */}
-            <div className="px-6 md:px-12 pb-6">
-              <div className="flex items-end justify-between mb-4">
-                <div><p className="text-xs font-bold text-accent-gold tracking-[0.2em] uppercase mb-0.5">Menu</p><h3 className="font-heading text-base md:text-lg font-bold">メニュー・料金</h3></div>
-              </div>
-              <div className="space-y-3">
-                {services.map(svc => {
-                  const Icon = svc.icon;
-                  const price = selectedDetailer.menuPrices[svc.id as keyof typeof selectedDetailer.menuPrices];
-                  return (
-                    <button key={svc.id} className={`w-full text-left card p-5 md:p-7 flex items-center gap-4 md:gap-5 group ${svc.popular ? 'ring-2 ring-accent-gold/20 card-gold' : ''}`} onClick={() => { setSelectedService(svc); setView('booking'); setBookingComplete(false); setSelectedDate(null); setSelectedTime(null); }}>
-                      <div className="w-12 h-12 rounded-2xl flex items-center justify-center shrink-0" style={{ background: svc.bgColor }}><Icon size={20} style={{ color: svc.color }} /></div>
-                      <div className="flex-1 min-w-0">
-                        <div className="flex items-center gap-2">
-                          <p className="font-heading font-bold text-sm md:text-base">{svc.name}</p>
-                          {svc.popular && <span className="badge badge-gold text-[0.65rem]"><Crown size={10} />人気</span>}
+              {/* Menu */}
+              <div className="px-6 md:px-12 pb-6">
+                <div className="flex items-end justify-between mb-4">
+                  <div><p className="text-xs font-bold text-accent-gold tracking-[0.2em] uppercase mb-0.5">Menu</p><h3 className="font-heading text-base md:text-lg font-bold">メニュー・料金</h3></div>
+                </div>
+                <div className="space-y-3">
+                  {services.map(svc => {
+                    const Icon = svc.icon;
+                    const price = selectedDetailer.menuPrices[svc.id as keyof typeof selectedDetailer.menuPrices];
+                    return (
+                      <button key={svc.id} className={`w-full text-left card p-5 md:p-7 flex items-center gap-4 md:gap-5 group ${svc.popular ? 'ring-2 ring-accent-gold/20 card-gold' : ''}`} onClick={() => { setSelectedService(svc); setView('booking'); setBookingComplete(false); setSelectedDate(null); setSelectedTime(null); }}>
+                        <div className="w-12 h-12 rounded-2xl flex items-center justify-center shrink-0" style={{ background: svc.bgColor }}><Icon size={20} style={{ color: svc.color }} /></div>
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-center gap-2">
+                            <p className="font-heading font-bold text-sm md:text-base">{svc.name}</p>
+                            {svc.popular && <span className="badge badge-gold text-[0.65rem]"><Crown size={10} />人気</span>}
+                          </div>
+                          <p className="text-xs md:text-sm text-text-muted mt-0.5">{svc.time} • {svc.description}</p>
                         </div>
-                        <p className="text-xs md:text-sm text-text-muted mt-0.5">{svc.time} • {svc.description}</p>
-                      </div>
-                      <div className="text-right shrink-0">
-                        <p className="font-heading font-bold text-sm md:text-lg text-primary">{price}</p>
-                        <p className="text-xs text-text-muted group-hover:text-primary transition-colors">予約 →</p>
-                      </div>
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
-
-            {/* Reviews */}
-            <div className="px-6 md:px-12 pb-10">
-              <div className="flex items-end justify-between mb-4">
-                <div><p className="text-xs font-bold text-accent-gold tracking-[0.2em] uppercase mb-0.5">Reviews</p><h3 className="font-heading text-base md:text-lg font-bold">口コミ ({selectedDetailer.reviews}件)</h3></div>
-              </div>
-              <div className="card p-6 md:p-8">
-                <div className="flex items-center gap-4 mb-4">
-                  <span className="font-display text-4xl md:text-5xl font-black text-star italic">{selectedDetailer.rating}</span>
-                  <div><Stars5 rating={selectedDetailer.rating} /><p className="text-xs text-text-muted mt-1">{selectedDetailer.reviews}件の口コミ</p></div>
+                        <div className="text-right shrink-0">
+                          <p className="font-heading font-bold text-sm md:text-lg text-primary">{price}</p>
+                          <p className="text-xs text-text-muted group-hover:text-primary transition-colors">予約 →</p>
+                        </div>
+                      </button>
+                    );
+                  })}
                 </div>
-                <div className="border-t border-border pt-4">
-                  <div className="flex items-center justify-between mb-2">
-                    <Stars5 rating={selectedDetailer.topReview.rating} />
-                    <span className="text-xs text-text-muted">{selectedDetailer.topReview.name} • {selectedDetailer.topReview.car}</span>
+              </div>
+
+              {/* Reviews */}
+              <div className="px-6 md:px-12 pb-10">
+                <div className="flex items-end justify-between mb-4">
+                  <div><p className="text-xs font-bold text-accent-gold tracking-[0.2em] uppercase mb-0.5">Reviews</p><h3 className="font-heading text-base md:text-lg font-bold">口コミ ({selectedDetailer.reviews}件)</h3></div>
+                </div>
+                <div className="card p-6 md:p-8">
+                  <div className="flex items-center gap-4 mb-4">
+                    <span className="font-display text-4xl md:text-5xl font-black text-star italic">{selectedDetailer.rating}</span>
+                    <div><Stars5 rating={selectedDetailer.rating} /><p className="text-xs text-text-muted mt-1">{selectedDetailer.reviews}件の口コミ</p></div>
                   </div>
-                  <p className="text-sm md:text-base text-text-secondary leading-relaxed">&ldquo;{selectedDetailer.topReview.text}&rdquo;</p>
+                  <div className="border-t border-border pt-4">
+                    <div className="flex items-center justify-between mb-2">
+                      <Stars5 rating={selectedDetailer.topReview.rating} />
+                      <span className="text-xs text-text-muted">{selectedDetailer.topReview.name} • {selectedDetailer.topReview.car}</span>
+                    </div>
+                    <p className="text-sm md:text-base text-text-secondary leading-relaxed">&ldquo;{selectedDetailer.topReview.text}&rdquo;</p>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      )}
+        )
+      }
 
       {/* ═══════════════════════════════════════════════
           BOOKING VIEW (既存維持)
           ═══════════════════════════════════════════════ */}
-      {view === 'booking' && (
-        <div className="animate-fade-in">
-          <header className="px-6 md:px-12 lg:px-20 pt-5 pb-4 flex items-center gap-3 ">
-            <button className="w-10 h-10 rounded-2xl border border-border flex items-center justify-center shrink-0 hover:bg-bg-secondary transition-all" onClick={() => setView('profile')}><ArrowLeft size={17} className="text-text-secondary" /></button>
-            <h1 className="font-heading text-base md:text-lg font-bold flex-1">予約</h1>
-          </header>
+      {
+        view === 'booking' && (
+          <div className="animate-fade-in">
+            <header className="px-6 md:px-12 lg:px-20 pt-5 pb-4 flex items-center gap-3 ">
+              <button className="w-10 h-10 rounded-2xl border border-border flex items-center justify-center shrink-0 hover:bg-bg-secondary transition-all" onClick={() => setView('profile')}><ArrowLeft size={17} className="text-text-secondary" /></button>
+              <h1 className="font-heading text-base md:text-lg font-bold flex-1">予約</h1>
+            </header>
 
-          {!bookingComplete ? (
-            <div>
-              <div className="px-6 md:px-12 pb-5">
-                <div className="card p-6 md:p-7">
-                  <div className="flex items-center gap-3.5 mb-3.5">
-                    <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-primary-light to-primary-subtle flex items-center justify-center"><User size={18} className="text-primary" /></div>
-                    <div><p className="font-heading font-bold text-sm md:text-base">{selectedDetailer.name}</p><p className="text-xs text-text-muted flex items-center gap-1"><Star size={10} fill="#e8a838" stroke="#e8a838" />{selectedDetailer.rating} • {selectedDetailer.area}</p></div>
-                  </div>
-                  <div className="border-t border-border pt-3.5 flex items-center justify-between">
-                    <div className="flex items-center gap-2.5"><selectedService.icon size={16} style={{ color: selectedService.color }} /><div><p className="text-sm font-bold">{selectedService.name}</p><p className="text-xs text-text-muted">{selectedService.time}</p></div></div>
-                    <span className="font-heading font-bold text-lg text-primary">{selectedDetailer.menuPrices[selectedService.id as keyof typeof selectedDetailer.menuPrices]}</span>
-                  </div>
-                </div>
-              </div>
-
-              <div className="px-6 md:px-12 pb-5">
-                <div className="flex items-end mb-3"><div><p className="text-xs font-bold text-accent-gold tracking-[0.2em] uppercase mb-0.5">Date</p><h3 className="font-heading text-sm md:text-base font-bold">日付を選択</h3></div></div>
-                <div className="flex gap-2.5 overflow-x-auto pb-1 hide-scrollbar">
-                  {dates.map((d, i) => (
-                    <button key={i} className={`flex flex-col items-center px-5 py-4 rounded-2xl transition-all shrink-0 border font-heading ${selectedDate === i ? 'btn-primary !rounded-2xl border-transparent' : 'bg-white text-text-secondary border-border hover:border-primary/30 hover:shadow-md'}`} onClick={() => setSelectedDate(i)}>
-                      <span className={`text-xs mb-1 font-body ${selectedDate === i ? 'text-blue-200' : 'text-text-muted'}`}>{d.isToday ? '今日' : d.weekday}</span>
-                      <span className="font-bold text-xl">{d.day}</span>
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              {selectedDate !== null && (
-                <div className="px-6 md:px-12 pb-6 animate-fade-in-up">
-                  <div className="flex items-end mb-3"><div><p className="text-xs font-bold text-accent-gold tracking-[0.2em] uppercase mb-0.5">Time</p><h3 className="font-heading text-sm md:text-base font-bold">時間を選択</h3></div></div>
-                  <div className="grid grid-cols-4 md:grid-cols-8 gap-2.5">
-                    {timeSlots.map(t => {
-                      const available = Math.random() > 0.3;
-                      return (
-                        <button key={t} className={`py-3 rounded-2xl text-sm font-semibold transition-all border ${selectedTime === t ? 'btn-primary !rounded-2xl border-transparent' : available ? 'bg-white text-text-secondary border-border hover:border-primary/30 hover:shadow-md' : 'bg-bg-secondary text-text-muted/40 border-transparent cursor-not-allowed'}`} onClick={() => available && setSelectedTime(t)} disabled={!available}>{t}</button>
-                      );
-                    })}
+            {!bookingComplete ? (
+              <div>
+                <div className="px-6 md:px-12 pb-5">
+                  <div className="card p-6 md:p-7">
+                    <div className="flex items-center gap-3.5 mb-3.5">
+                      <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-primary-light to-primary-subtle flex items-center justify-center"><User size={18} className="text-primary" /></div>
+                      <div><p className="font-heading font-bold text-sm md:text-base">{selectedDetailer.name}</p><p className="text-xs text-text-muted flex items-center gap-1"><Star size={10} fill="#e8a838" stroke="#e8a838" />{selectedDetailer.rating} • {selectedDetailer.area}</p></div>
+                    </div>
+                    <div className="border-t border-border pt-3.5 flex items-center justify-between">
+                      <div className="flex items-center gap-2.5"><selectedService.icon size={16} style={{ color: selectedService.color }} /><div><p className="text-sm font-bold">{selectedService.name}</p><p className="text-xs text-text-muted">{selectedService.time}</p></div></div>
+                      <span className="font-heading font-bold text-lg text-primary">{selectedDetailer.menuPrices[selectedService.id as keyof typeof selectedDetailer.menuPrices]}</span>
+                    </div>
                   </div>
                 </div>
-              )}
 
-              <div className="px-6 md:px-12 pb-5">
-                <div className="card-gold p-5 md:p-6 flex items-start gap-3">
-                  <Shield size={20} className="text-accent-gold mt-0.5 shrink-0" />
-                  <div>
-                    <p className="text-sm font-bold text-accent-gold-dark">賠償責任保険付き</p>
-                    <p className="text-xs text-text-secondary mt-0.5 leading-relaxed">施設所有者賠償責任保険・自動車管理者賠償責任保険に加入。万が一の際も安心です。</p>
+                <div className="px-6 md:px-12 pb-5">
+                  <div className="flex items-end mb-3"><div><p className="text-xs font-bold text-accent-gold tracking-[0.2em] uppercase mb-0.5">Date</p><h3 className="font-heading text-sm md:text-base font-bold">日付を選択</h3></div></div>
+                  <div className="flex gap-2.5 overflow-x-auto pb-1 hide-scrollbar">
+                    {dates.map((d, i) => (
+                      <button key={i} className={`flex flex-col items-center px-5 py-4 rounded-2xl transition-all shrink-0 border font-heading ${selectedDate === i ? 'btn-primary !rounded-2xl border-transparent' : 'bg-white text-text-secondary border-border hover:border-primary/30 hover:shadow-md'}`} onClick={() => setSelectedDate(i)}>
+                        <span className={`text-xs mb-1 font-body ${selectedDate === i ? 'text-blue-200' : 'text-text-muted'}`}>{d.isToday ? '今日' : d.weekday}</span>
+                        <span className="font-bold text-xl">{d.day}</span>
+                      </button>
+                    ))}
                   </div>
                 </div>
-              </div>
 
-              <div className="px-6 md:px-12 pb-10">
-                <button className={`w-full font-heading font-bold text-base py-4 rounded-2xl transition-all flex items-center justify-center gap-2 ${selectedDate !== null && selectedTime ? 'btn-primary' : 'bg-bg-secondary text-text-muted cursor-not-allowed border border-border'}`} disabled={selectedDate === null || !selectedTime} onClick={() => setBookingComplete(true)}>
-                  <Check size={18} />予約を確定する
-                </button>
-              </div>
-            </div>
-          ) : (
-            <div className="px-6 md:px-12 py-16 text-center animate-fade-in-up">
-              <div className="w-20 h-20 md:w-24 md:h-24 rounded-full bg-gradient-to-br from-success-light to-emerald-50 border-2 border-success/20 flex items-center justify-center mx-auto mb-6 shadow-lg">
-                <Check size={36} className="text-success md:!w-12 md:!h-12" />
-              </div>
-              <h2 className="font-heading text-2xl md:text-3xl font-black mb-2">予約が確定しました！</h2>
-              <p className="text-sm md:text-base text-text-secondary mb-8">{selectedDetailer.name}さんが{dates[selectedDate || 0]?.day}日 {selectedTime}にお伺いします。</p>
-              <div className="card p-7 md:p-9 text-left mb-8 max-w-md mx-auto">
-                <div className="space-y-4">
-                  {[
-                    ['職人', selectedDetailer.name],
-                    ['メニュー', selectedService.name],
-                    ['日時', `${dates[selectedDate || 0]?.day}日 (${dates[selectedDate || 0]?.weekday}) ${selectedTime}`],
-                    ['施工時間', selectedService.time],
-                  ].map(([label, val]) => (
-                    <div key={label as string} className="flex justify-between"><span className="text-sm text-text-muted">{label}</span><span className="text-sm font-bold">{val}</span></div>
-                  ))}
-                  <div className="divider-gold" />
-                  <div className="flex justify-between">
-                    <span className="text-base font-bold">合計</span>
-                    <span className="text-lg font-black text-primary">{selectedDetailer.menuPrices[selectedService.id as keyof typeof selectedDetailer.menuPrices]}</span>
+                {selectedDate !== null && (
+                  <div className="px-6 md:px-12 pb-6 animate-fade-in-up">
+                    <div className="flex items-end mb-3"><div><p className="text-xs font-bold text-accent-gold tracking-[0.2em] uppercase mb-0.5">Time</p><h3 className="font-heading text-sm md:text-base font-bold">時間を選択</h3></div></div>
+                    <div className="grid grid-cols-4 md:grid-cols-8 gap-2.5">
+                      {timeSlots.map(t => {
+                        const available = Math.random() > 0.3;
+                        return (
+                          <button key={t} className={`py-3 rounded-2xl text-sm font-semibold transition-all border ${selectedTime === t ? 'btn-primary !rounded-2xl border-transparent' : available ? 'bg-white text-text-secondary border-border hover:border-primary/30 hover:shadow-md' : 'bg-bg-secondary text-text-muted/40 border-transparent cursor-not-allowed'}`} onClick={() => available && setSelectedTime(t)} disabled={!available}>{t}</button>
+                        );
+                      })}
+                    </div>
+                  </div>
+                )}
+
+                <div className="px-6 md:px-12 pb-5">
+                  <div className="card-gold p-5 md:p-6 flex items-start gap-3">
+                    <Shield size={20} className="text-accent-gold mt-0.5 shrink-0" />
+                    <div>
+                      <p className="text-sm font-bold text-accent-gold-dark">賠償責任保険付き</p>
+                      <p className="text-xs text-text-secondary mt-0.5 leading-relaxed">施設所有者賠償責任保険・自動車管理者賠償責任保険に加入。万が一の際も安心です。</p>
+                    </div>
                   </div>
                 </div>
+
+                <div className="px-6 md:px-12 pb-10">
+                  <button className={`w-full font-heading font-bold text-base py-4 rounded-2xl transition-all flex items-center justify-center gap-2 ${selectedDate !== null && selectedTime ? 'btn-primary' : 'bg-bg-secondary text-text-muted cursor-not-allowed border border-border'}`} disabled={selectedDate === null || !selectedTime} onClick={() => setBookingComplete(true)}>
+                    <Check size={18} />予約を確定する
+                  </button>
+                </div>
               </div>
-              <button className="btn-primary font-heading font-bold text-sm md:text-base px-10 py-4 rounded-2xl" onClick={() => { setView('home'); setBookingComplete(false); }}>トップに戻る</button>
-            </div>
-          )}
-        </div>
-      )}
-    </div>
+            ) : (
+              <div className="px-6 md:px-12 py-16 text-center animate-fade-in-up">
+                <div className="w-20 h-20 md:w-24 md:h-24 rounded-full bg-gradient-to-br from-success-light to-emerald-50 border-2 border-success/20 flex items-center justify-center mx-auto mb-6 shadow-lg">
+                  <Check size={36} className="text-success md:!w-12 md:!h-12" />
+                </div>
+                <h2 className="font-heading text-2xl md:text-3xl font-black mb-2">予約が確定しました！</h2>
+                <p className="text-sm md:text-base text-text-secondary mb-8">{selectedDetailer.name}さんが{dates[selectedDate || 0]?.day}日 {selectedTime}にお伺いします。</p>
+                <div className="card p-7 md:p-9 text-left mb-8 max-w-md mx-auto">
+                  <div className="space-y-4">
+                    {[
+                      ['職人', selectedDetailer.name],
+                      ['メニュー', selectedService.name],
+                      ['日時', `${dates[selectedDate || 0]?.day}日 (${dates[selectedDate || 0]?.weekday}) ${selectedTime}`],
+                      ['施工時間', selectedService.time],
+                    ].map(([label, val]) => (
+                      <div key={label as string} className="flex justify-between"><span className="text-sm text-text-muted">{label}</span><span className="text-sm font-bold">{val}</span></div>
+                    ))}
+                    <div className="divider-gold" />
+                    <div className="flex justify-between">
+                      <span className="text-base font-bold">合計</span>
+                      <span className="text-lg font-black text-primary">{selectedDetailer.menuPrices[selectedService.id as keyof typeof selectedDetailer.menuPrices]}</span>
+                    </div>
+                  </div>
+                </div>
+                <button className="btn-primary font-heading font-bold text-sm md:text-base px-10 py-4 rounded-2xl" onClick={() => { setView('home'); setBookingComplete(false); }}>トップに戻る</button>
+              </div>
+            )}
+          </div>
+        )
+      }
+    </div >
   );
 }
