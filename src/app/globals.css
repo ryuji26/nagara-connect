@@ -148,6 +148,84 @@ h6 {
   border: none;
 }
 
+/* ── Pricing card highlight (松コース) ── */
+.pricing-highlight {
+  position: relative;
+  border: 2px solid var(--color-accent-gold);
+  box-shadow: var(--shadow-md), 0 0 30px rgba(201, 169, 110, 0.12);
+}
+
+.pricing-highlight::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(135deg, rgba(201, 169, 110, 0.04), rgba(201, 169, 110, 0.01));
+  pointer-events: none;
+}
+
+/* ── Chip styles for visit/dropoff ── */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 100px;
+  letter-spacing: 0.02em;
+}
+
+.chip-visit {
+  background: linear-gradient(135deg, #e0f2fe, #bae6fd);
+  color: #0369a1;
+  border: 1px solid rgba(3, 105, 161, 0.12);
+}
+
+.chip-dropoff {
+  background: linear-gradient(135deg, #f3e8ff, #e9d5ff);
+  color: #7c3aed;
+  border: 1px solid rgba(124, 58, 237, 0.12);
+}
+
+/* ── Step connector for flow section ── */
+.step-connector {
+  position: relative;
+}
+
+.step-connector::after {
+  content: '';
+  position: absolute;
+  top: 22px;
+  left: calc(50% + 24px);
+  width: calc(100% - 48px);
+  height: 2px;
+  background: linear-gradient(90deg, var(--color-accent-gold), var(--color-border));
+}
+
+/* ── Hero overlay ── */
+.hero-overlay {
+  background: linear-gradient(to bottom,
+      rgba(10, 18, 40, 0.75) 0%,
+      rgba(10, 18, 40, 0.65) 40%,
+      rgba(10, 18, 40, 0.80) 100%);
+}
+
+/* ── Horizontal scroll snap ── */
+.snap-scroll {
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+.snap-scroll>* {
+  scroll-snap-align: start;
+}
+
+/* ── CTA section ── */
+.cta-gradient {
+  background: linear-gradient(135deg, #0f1b3d 0%, #162a5e 50%, #1a3a8f 100%);
+}
+
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -182,6 +260,16 @@ h6 {
   }
 }
 
+@keyframes shimmer {
+  0% {
+    background-position: -200% center;
+  }
+
+  100% {
+    background-position: 200% center;
+  }
+}
+
 .animate-fade-in-up {
   animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
@@ -192,6 +280,11 @@ h6 {
 
 .animate-float {
   animation: float 6s ease-in-out infinite;
+}
+
+.animate-shimmer {
+  background-size: 200% 100%;
+  animation: shimmer 3s ease-in-out infinite;
 }
 
 ::-webkit-scrollbar {

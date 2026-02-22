@@ -5,28 +5,63 @@ import {
   MapPin, Search, Star, Clock, Shield, ChevronRight,
   Droplets, Sparkles, Zap, Check, User, Calendar,
   ArrowLeft, Diamond, Heart, ThumbsUp, Award, BadgeCheck,
-  Phone, MessageCircle, ChevronDown, Crown
+  Phone, MessageCircle, ChevronDown, Crown, Car,
+  Truck, Home as HomeIcon, Wallet, LogIn, UserPlus,
+  ArrowRight
 } from 'lucide-react';
 
+/* ══════════════════════════════════════════
+   DATA
+   ══════════════════════════════════════════ */
+
 const services = [
-  { id: 'quick-wash', name: 'クイックウォッシュ', time: '約30分', price: '¥4,400~', description: 'スノーフォームによるノータッチ洗車。室内拭き上げ付。', icon: Droplets, color: '#1a3a8f', bgColor: '#e8edf8', image: '/images/quick-wash.png' },
-  { id: 'skin-improvement', name: '肌改善スタンダード', time: '約60分', price: '¥12,000~', description: 'BASE（下地処理剤）で傷埋め＋表面安定化。見違えるような艶に。', icon: Sparkles, color: '#c9a96e', bgColor: '#f8f3eb', image: '/images/skin-improvement.png' },
-  { id: 'night-luster', name: 'ナイトラスタープレミアム', time: '約110分', price: '¥25,000~', description: '旗艦サービス。Fast Glass（2時間硬化ガラスコーティング）で究極の鏡面仕上げ。', icon: Diamond, color: '#1a3a8f', bgColor: '#e8edf8', popular: true, image: '/images/night-luster.png' },
-  { id: 'restore-pro', name: 'リストアプロ', time: '約3.5時間', price: '¥60,000~', description: '深い傷や経年劣化を精密に復元。新車以上の輝きを取り戻す最高峰。', icon: Zap, color: '#c9a96e', bgColor: '#f8f3eb', image: '/images/restore-pro.png' },
+  {
+    id: 'quick-wash', rank: '梅', name: 'クイックウォッシュ',
+    time: '約30分', price: '¥4,400〜', priceNum: 4400,
+    description: 'スノーフォームによるノータッチ洗車。室内拭き上げ付き。忙しい方にも最適。',
+    icon: Droplets, color: '#1a3a8f', bgColor: '#e8edf8', image: '/images/quick-wash.png',
+  },
+  {
+    id: 'skin-improvement', rank: '竹', name: '肌改善スタンダード',
+    time: '約60分', price: '¥12,000〜', priceNum: 12000,
+    description: 'BASE（下地処理剤）で傷埋め＋表面安定化。見違えるような艶に。',
+    icon: Sparkles, color: '#c9a96e', bgColor: '#f8f3eb', image: '/images/skin-improvement.png',
+  },
+  {
+    id: 'night-luster', rank: '松', name: 'ナイトラスタープレミアム',
+    time: '約110分', price: '¥25,000〜', priceNum: 25000,
+    description: 'Fast Glass（2時間硬化ガラスコーティング）で究極の鏡面仕上げ。旗艦サービス。',
+    icon: Diamond, color: '#1a3a8f', bgColor: '#e8edf8', popular: true, image: '/images/night-luster.png',
+  },
+  {
+    id: 'restore-pro', rank: '特上', name: 'リストアプロ',
+    time: '約3.5時間', price: '¥60,000〜', priceNum: 60000,
+    description: '深い傷や経年劣化を精密に復元。新車以上の輝きを取り戻す最高峰メニュー。',
+    icon: Zap, color: '#c9a96e', bgColor: '#f8f3eb', image: '/images/restore-pro.png',
+  },
 ];
 
-const areas = ['渋谷区', '新宿区', '港区', '世田谷区', '目黒区', '品川区'];
+const prefectures: Record<string, string[]> = {
+  '東京都': ['渋谷区', '新宿区', '港区', '世田谷区', '目黒区', '品川区', '大田区', '中野区', '杉並区', '千代田区'],
+  '神奈川県': ['横浜市', '川崎市', '相模原市', '藤沢市'],
+  '千葉県': ['千葉市', '船橋市', '柏市', '松戸市'],
+  '埼玉県': ['さいたま市', '川越市', '所沢市', '越谷市'],
+};
 
 const detailersList = [
-  { id: 1, name: '高橋 匠', rating: 4.9, reviews: 128, jobs: 342, specialty: 'コーティング', badge: 'マスター認定', area: '渋谷区・目黒区', intro: 'Fast Glass認定施工者。10年以上の経験を持ち、高級車ディテイリングを専門としています。', availableToday: true, topReview: { name: '田中様', car: 'レクサス RX', text: '仕上がりに感動しました。水弾きが全然違います。丁寧な作業で安心して任せられました。', rating: 5 }, menuPrices: { 'quick-wash': '¥4,400', 'skin-improvement': '¥12,000', 'night-luster': '¥25,000', 'restore-pro': '¥60,000' } },
-  { id: 2, name: '佐藤 竜', rating: 5.0, reviews: 203, jobs: 518, specialty: '研磨', badge: 'グランドマスター', area: '新宿区・中野区', intro: '研磨のスペシャリスト。深い傷も丁寧に除去し、新車以上の輝きを実現。', availableToday: true, topReview: { name: '鈴木様', car: 'BMW M3', text: '3年放置した水ジミが完全に消えました。プロの技術に脱帽です。', rating: 5 }, menuPrices: { 'quick-wash': '¥4,400', 'skin-improvement': '¥13,000', 'night-luster': '¥27,000', 'restore-pro': '¥65,000' } },
-  { id: 3, name: '田中 空', rating: 4.8, reviews: 87, jobs: 256, specialty: '洗車・メンテナンス', badge: 'エキスパート', area: '港区・千代田区', intro: '丁寧で素早い洗車が定評。忙しいビジネスマンから厚い支持。', availableToday: false, topReview: { name: '山田様', car: 'メルセデス Cクラス', text: '毎月お願いしています。いつも期待以上の仕上がりです。', rating: 5 }, menuPrices: { 'quick-wash': '¥4,400', 'skin-improvement': '¥12,000', 'night-luster': '¥25,000', 'restore-pro': '¥60,000' } },
-  { id: 4, name: '鈴木 慶', rating: 4.7, reviews: 64, jobs: 189, specialty: 'レストア', badge: 'エキスパート', area: '世田谷区・杉並区', intro: '旧車・クラシックカーのレストアが得意。最適な施工プランをご提案。', availableToday: true, topReview: { name: '伊藤様', car: 'ポルシェ 911', text: '30年前の車がここまで蘇るとは。素晴らしい技術です。', rating: 5 }, menuPrices: { 'quick-wash': '¥4,400', 'skin-improvement': '¥12,000', 'night-luster': '¥26,000', 'restore-pro': '¥62,000' } },
-  { id: 5, name: '山本 雪', rating: 4.9, reviews: 156, jobs: 401, specialty: 'コーティング', badge: 'マスター認定', area: '品川区・大田区', intro: '女性ならではの細やかな気配りと確かな技術。アフターフォローも丁寧。', availableToday: true, topReview: { name: '中村様', car: 'テスラ Model 3', text: '説明が丁寧で、施工前後の違いもしっかり見せてくれました。', rating: 5 }, menuPrices: { 'quick-wash': '¥4,400', 'skin-improvement': '¥12,000', 'night-luster': '¥25,000', 'restore-pro': '¥60,000' } },
+  { id: 1, name: '高橋 匠', rating: 4.9, reviews: 128, jobs: 342, specialty: 'コーティング', badge: 'マスター認定', area: '渋谷区・目黒区', intro: 'Fast Glass認定施工者。10年以上の経験を持ち、高級車ディテイリングを専門としています。', availableToday: true, visitOk: true, dropoffOk: true, topReview: { name: '田中様', car: 'レクサス RX', text: '仕上がりに感動しました。水弾きが全然違います。丁寧な作業で安心して任せられました。', rating: 5 }, menuPrices: { 'quick-wash': '¥4,400', 'skin-improvement': '¥12,000', 'night-luster': '¥25,000', 'restore-pro': '¥60,000' } },
+  { id: 2, name: '佐藤 竜', rating: 5.0, reviews: 203, jobs: 518, specialty: '研磨', badge: 'グランドマスター', area: '新宿区・中野区', intro: '研磨のスペシャリスト。深い傷も丁寧に除去し、新車以上の輝きを実現。', availableToday: true, visitOk: true, dropoffOk: false, topReview: { name: '鈴木様', car: 'BMW M3', text: '3年放置した水ジミが完全に消えました。プロの技術に脱帽です。', rating: 5 }, menuPrices: { 'quick-wash': '¥4,400', 'skin-improvement': '¥13,000', 'night-luster': '¥27,000', 'restore-pro': '¥65,000' } },
+  { id: 3, name: '田中 空', rating: 4.8, reviews: 87, jobs: 256, specialty: '洗車・メンテナンス', badge: 'エキスパート', area: '港区・千代田区', intro: '丁寧で素早い洗車が定評。忙しいビジネスマンから厚い支持。', availableToday: false, visitOk: true, dropoffOk: true, topReview: { name: '山田様', car: 'メルセデス Cクラス', text: '毎月お願いしています。いつも期待以上の仕上がりです。', rating: 5 }, menuPrices: { 'quick-wash': '¥4,400', 'skin-improvement': '¥12,000', 'night-luster': '¥25,000', 'restore-pro': '¥60,000' } },
+  { id: 4, name: '鈴木 慶', rating: 4.7, reviews: 64, jobs: 189, specialty: 'レストア', badge: 'エキスパート', area: '世田谷区・杉並区', intro: '旧車・クラシックカーのレストアが得意。最適な施工プランをご提案。', availableToday: true, visitOk: false, dropoffOk: true, topReview: { name: '伊藤様', car: 'ポルシェ 911', text: '30年前の車がここまで蘇るとは。素晴らしい技術です。', rating: 5 }, menuPrices: { 'quick-wash': '¥4,400', 'skin-improvement': '¥12,000', 'night-luster': '¥26,000', 'restore-pro': '¥62,000' } },
+  { id: 5, name: '山本 雪', rating: 4.9, reviews: 156, jobs: 401, specialty: 'コーティング', badge: 'マスター認定', area: '品川区・大田区', intro: '女性ならではの細やかな気配りと確かな技術。アフターフォローも丁寧。', availableToday: true, visitOk: true, dropoffOk: true, topReview: { name: '中村様', car: 'テスラ Model 3', text: '説明が丁寧で、施工前後の違いもしっかり見せてくれました。', rating: 5 }, menuPrices: { 'quick-wash': '¥4,400', 'skin-improvement': '¥12,000', 'night-luster': '¥25,000', 'restore-pro': '¥60,000' } },
 ];
 
 const timeSlots = ['10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00'];
 type View = 'home' | 'list' | 'profile' | 'booking';
+
+/* ══════════════════════════════════════════
+   COMPONENT
+   ══════════════════════════════════════════ */
 
 export default function NagaraProPage() {
   const [view, setView] = useState<View>('home');
@@ -35,165 +70,429 @@ export default function NagaraProPage() {
   const [selectedDate, setSelectedDate] = useState<number | null>(null);
   const [selectedTime, setSelectedTime] = useState<string | null>(null);
   const [bookingComplete, setBookingComplete] = useState(false);
-  const [searchArea, setSearchArea] = useState('渋谷区');
+  const [selectedPref, setSelectedPref] = useState('東京都');
+  const [selectedCity, setSelectedCity] = useState('渋谷区');
   const [likedIds, setLikedIds] = useState<number[]>([]);
   const toggleLike = (id: number) => setLikedIds(prev => prev.includes(id) ? prev.filter(x => x !== id) : [...prev, id]);
   const dates = Array.from({ length: 7 }).map((_, i) => { const d = new Date(); d.setDate(d.getDate() + i); return { day: d.getDate(), weekday: ['日', '月', '火', '水', '木', '金', '土'][d.getDay()], isToday: i === 0 }; });
 
-  const Stars5 = ({ rating }: { rating: number }) => (
-    <div className="flex gap-0.5">{[...Array(5)].map((_, i) => <Star key={i} size={12} fill={i < Math.floor(rating) ? '#e8a838' : '#e2e5ec'} stroke={i < Math.floor(rating) ? '#e8a838' : '#e2e5ec'} />)}</div>
+  const Stars5 = ({ rating, size = 12 }: { rating: number; size?: number }) => (
+    <div className="flex gap-0.5">{[...Array(5)].map((_, i) => <Star key={i} size={size} fill={i < Math.floor(rating) ? '#e8a838' : '#e2e5ec'} stroke={i < Math.floor(rating) ? '#e8a838' : '#e2e5ec'} />)}</div>
   );
+
+  const handleSearch = () => {
+    setView('list');
+  };
 
   return (
     <div className="min-h-screen bg-bg text-text-primary">
 
-      {/* ═══ HOME ═══ */}
+      {/* ═══════════════════════════════════════════════
+          HOME VIEW
+          ═══════════════════════════════════════════════ */}
       {view === 'home' && (
         <div className="animate-fade-in">
-          {/* Header */}
-          <header className="px-6 md:px-12 lg:px-20 pt-5 pb-4 flex items-center justify-between ">
-            <h1 className="font-heading text-xl md:text-2xl font-black tracking-tight">
-              NAGARA <span className="text-primary font-display italic">PRO</span>
-            </h1>
-            <div className="flex items-center gap-3">
-              <button className="w-10 h-10 rounded-2xl border border-border flex items-center justify-center hover:bg-bg-secondary transition-all hover:shadow-md"><User size={17} className="text-text-muted" /></button>
+
+          {/* ── 1. HEADER & NAV ── */}
+          <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-xl border-b border-border/50">
+            <div className="max-w-7xl mx-auto px-5 md:px-10 lg:px-16 h-16 flex items-center justify-between">
+              <h1 className="font-heading text-xl md:text-2xl font-black tracking-tight">
+                NAGARA <span className="text-primary font-display italic">PRO</span>
+              </h1>
+              <div className="flex items-center gap-2 md:gap-3">
+                <button
+                  className="hidden sm:flex items-center gap-2 px-4 py-2 rounded-xl bg-accent-gold-light border border-accent-gold/20 text-sm font-semibold text-accent-gold-dark hover:bg-accent-gold/10 transition-all"
+                >
+                  <Car size={15} />
+                  マイカー登録
+                </button>
+                <button className="flex items-center gap-1.5 px-3 py-2 rounded-xl text-sm font-medium text-text-secondary hover:bg-bg-secondary transition-all">
+                  <LogIn size={15} />
+                  <span className="hidden md:inline">ログイン</span>
+                </button>
+                <button className="flex items-center gap-1.5 px-4 py-2 rounded-xl text-sm font-bold text-white bg-primary hover:bg-primary-dark transition-all shadow-sm">
+                  <UserPlus size={15} />
+                  <span className="hidden md:inline">新規登録</span>
+                </button>
+              </div>
+            </div>
+            {/* Mobile: マイカー登録バー */}
+            <div className="sm:hidden px-5 pb-3">
+              <button className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-accent-gold-light border border-accent-gold/20 text-sm font-semibold text-accent-gold-dark active:scale-[0.98] transition-all">
+                <Car size={15} />
+                マイカー登録して料金を確認
+              </button>
             </div>
           </header>
 
-          {/* Hero */}
-          <section className="px-6 md:px-12 lg:px-20 py-6 md:py-12 ">
-            <div className="relative rounded-[28px] overflow-hidden">
-              {/* Background layers */}
-              <div className="absolute inset-0 bg-gradient-to-br from-[#0f1b3d] via-[#162a5e] to-[#1a3a8f]" />
-              <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'radial-gradient(circle at 70% 30%, rgba(201,169,110,0.4) 0%, transparent 50%), radial-gradient(circle at 20% 80%, rgba(255,255,255,0.1) 0%, transparent 40%)' }} />
-              <div className="absolute top-6 right-8 w-72 h-72 rounded-full bg-accent-gold/5 blur-3xl animate-float" />
+          {/* ── 2. HERO / FIRST VIEW ── */}
+          <section className="relative overflow-hidden">
+            {/* Background image */}
+            <div
+              className="absolute inset-0 bg-cover bg-center"
+              style={{ backgroundImage: "url('/images/hero-bg.png')" }}
+            />
+            <div className="hero-overlay absolute inset-0" />
+            {/* Decorative glow */}
+            <div className="absolute top-10 right-10 w-80 h-80 rounded-full bg-accent-gold/8 blur-[100px] animate-float" />
+            <div className="absolute bottom-10 left-10 w-60 h-60 rounded-full bg-primary/10 blur-[80px]" />
 
-              <div className="relative px-8 md:px-14 py-14 md:py-20 flex flex-col items-center justify-center text-center">
-                {/* Gold accent line */}
-                <div className="w-12 h-[3px] bg-gradient-to-r from-accent-gold to-accent-gold-dark rounded-full mb-5 mx-auto" />
-                <p className="text-xs md:text-sm font-semibold tracking-[0.35em] uppercase mb-3 text-accent-gold">Mobile Car Care Revolution</p>
-                <h2 className="font-heading text-3xl md:text-5xl font-black leading-[1.15] mb-4 text-white">
-                  ショップ品質を、<br />
-                  <span className="text-accent-gold">あなたの駐車場</span>で。
-                </h2>
-                <p className="text-sm md:text-base text-blue-200/80 leading-relaxed mb-8">
-                  プロの職人がご自宅に出張。Fast Glass認定コーティングから丁寧な手洗いまで、最高品質のカーケアをお届けします。
+            <div className="relative max-w-4xl mx-auto px-5 md:px-10 py-16 md:py-28 flex flex-col items-center text-center">
+              {/* Gold accent */}
+              <div className="w-12 h-[3px] bg-gradient-to-r from-accent-gold to-accent-gold-dark rounded-full mb-5" />
+              <p className="text-xs md:text-sm font-semibold tracking-[0.35em] uppercase mb-4 text-accent-gold">
+                Mobile Car Care Revolution
+              </p>
+
+              <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black leading-[1.15] mb-4 text-white">
+                ショップ品質を、<br />
+                <span className="text-accent-gold">あなたの駐車場</span>で。
+              </h2>
+
+              <p className="text-sm md:text-base text-blue-200/80 leading-relaxed mb-10 max-w-xl">
+                ながら洗車公認の職人があなたの元へ。Fast Glass認定コーティングから丁寧な手洗いまで、最高品質のカーケアをお届けします。
+              </p>
+
+              {/* Search UI */}
+              <div className="w-full max-w-2xl bg-white/10 backdrop-blur-xl rounded-2xl md:rounded-3xl p-4 md:p-5 border border-white/15 shadow-2xl">
+                <p className="text-xs font-bold text-white/70 tracking-wider uppercase mb-3 md:mb-4">
+                  <Search size={12} className="inline mr-1.5 -mt-0.5" />エリアから職人を探す
                 </p>
-
-                <div className="flex flex-col sm:flex-row gap-3 max-w-xl mx-auto justify-center">
-                  <div className="bg-white/10 backdrop-blur-md rounded-2xl px-5 py-3.5 flex items-center gap-2.5 border border-white/15 min-w-[200px]">
-                    <MapPin size={16} className="text-accent-gold shrink-0" />
-                    <select className="bg-transparent text-sm w-full outline-none text-white appearance-none cursor-pointer" value={searchArea} onChange={(e) => setSearchArea(e.target.value)}>
-                      {areas.map(a => <option key={a} value={a} className="text-text-primary bg-white">{a}</option>)}
+                <div className="flex flex-col sm:flex-row gap-2 md:gap-3">
+                  {/* 都道府県 */}
+                  <div className="flex-1 bg-white/10 rounded-xl px-4 py-3 flex items-center gap-2 border border-white/10">
+                    <MapPin size={15} className="text-accent-gold shrink-0" />
+                    <select
+                      className="bg-transparent text-sm w-full outline-none text-white appearance-none cursor-pointer"
+                      value={selectedPref}
+                      onChange={(e) => {
+                        setSelectedPref(e.target.value);
+                        setSelectedCity(prefectures[e.target.value][0]);
+                      }}
+                    >
+                      {Object.keys(prefectures).map(p => <option key={p} value={p} className="text-text-primary bg-white">{p}</option>)}
                     </select>
-                    <ChevronDown size={14} className="text-white/50 shrink-0" />
+                    <ChevronDown size={14} className="text-white/40 shrink-0" />
                   </div>
-                  <button className="bg-accent-gold hover:bg-accent-gold-dark text-white font-heading font-bold text-sm px-7 py-3.5 rounded-2xl transition-all active:scale-[0.97] flex items-center justify-center gap-2 shrink-0 shadow-lg hover:shadow-xl" onClick={() => setView('list')}>
-                    <Search size={16} />職人を探す
+                  {/* 市区町村 */}
+                  <div className="flex-1 bg-white/10 rounded-xl px-4 py-3 flex items-center gap-2 border border-white/10">
+                    <MapPin size={15} className="text-white/50 shrink-0" />
+                    <select
+                      className="bg-transparent text-sm w-full outline-none text-white appearance-none cursor-pointer"
+                      value={selectedCity}
+                      onChange={(e) => setSelectedCity(e.target.value)}
+                    >
+                      {prefectures[selectedPref].map(c => <option key={c} value={c} className="text-text-primary bg-white">{c}</option>)}
+                    </select>
+                    <ChevronDown size={14} className="text-white/40 shrink-0" />
+                  </div>
+                  {/* Search button */}
+                  <button
+                    className="bg-accent-gold hover:bg-accent-gold-dark text-white font-heading font-bold text-sm px-7 py-3.5 rounded-xl transition-all active:scale-[0.97] flex items-center justify-center gap-2 shrink-0 shadow-lg hover:shadow-xl"
+                    onClick={handleSearch}
+                  >
+                    <Search size={16} />
+                    職人を探す
                   </button>
                 </div>
               </div>
-            </div>
-          </section>
 
-          {/* Service Categories */}
-          <section className="px-6 md:px-12 lg:px-20 pb-10 ">
-            <div className="flex items-end justify-between mb-5">
-              <div>
-                <p className="text-xs font-bold text-accent-gold tracking-[0.2em] uppercase mb-1">Services</p>
-                <h3 className="font-heading text-lg md:text-xl font-bold">メニューから探す</h3>
-              </div>
-            </div>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              {services.map(svc => {
-                return (
-                  <button key={svc.id} className={`card text-left group overflow-hidden ${svc.popular ? 'ring-2 ring-primary/15' : ''}`} onClick={() => setView('list')}>
-                    {/* Image */}
-                    <div className="relative h-36 md:h-44 overflow-hidden">
-                      <img src={svc.image} alt={svc.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-                      {svc.popular && <span className="badge badge-gold absolute top-3 left-3 shadow-md"><Crown size={10} />人気</span>}
-                    </div>
-                    <div className="p-5 md:p-6">
-                      <p className="font-heading text-sm md:text-base font-bold mb-1">{svc.name}</p>
-                      <p className="text-xs md:text-sm text-text-muted leading-relaxed">{svc.time} • {svc.price}</p>
-                    </div>
-                  </button>
-                );
-              })}
-            </div>
-          </section>
-
-          {/* Featured Detailers */}
-          <section className="px-6 md:px-12 lg:px-20 pb-10 ">
-            <div className="flex items-end justify-between mb-5">
-              <div>
-                <p className="text-xs font-bold text-accent-gold tracking-[0.2em] uppercase mb-1">Professionals</p>
-                <h3 className="font-heading text-lg md:text-xl font-bold">おすすめの職人</h3>
-              </div>
-              <button className="text-xs text-primary font-semibold flex items-center gap-0.5 hover:underline" onClick={() => setView('list')}>すべて見る <ChevronRight size={14} /></button>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              {detailersList.slice(0, 3).map(d => (
-                <button key={d.id} className="card p-6 md:p-7 text-left group" onClick={() => { setSelectedDetailer(d); setView('profile'); }}>
-                  <div className="flex items-center gap-3.5 mb-4">
-                    <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary-light to-primary-subtle flex items-center justify-center">
-                      <User size={22} className="text-primary" />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center gap-1.5"><p className="font-heading font-bold text-sm md:text-base">{d.name}</p><BadgeCheck size={14} className="text-primary shrink-0" /></div>
-                      <div className="flex items-center gap-1 mt-0.5"><Star size={12} fill="#e8a838" stroke="#e8a838" /><span className="text-xs text-star font-bold">{d.rating}</span><span className="text-xs text-text-muted">({d.reviews}件)</span></div>
-                    </div>
-                  </div>
-                  <div className="flex flex-wrap gap-1.5 mb-3">
-                    <span className="badge badge-neutral">{d.specialty}</span>
-                    <span className="badge badge-primary">{d.badge}</span>
-                    {d.availableToday && <span className="badge badge-success">本日空きあり</span>}
-                  </div>
-                  <p className="text-xs text-text-muted flex items-center gap-1"><MapPin size={12} />{d.area}</p>
-                </button>
-              ))}
-            </div>
-          </section>
-
-          {/* Trust badges */}
-          <section className="px-6 md:px-12 lg:px-20 pb-12 ">
-            <div className="card-gold p-8 md:p-10">
-              <div className="text-center mb-6">
-                <p className="text-xs font-bold text-accent-gold tracking-[0.2em] uppercase mb-1">Trust & Quality</p>
-                <h3 className="font-heading text-base md:text-lg font-bold">安心と品質のお約束</h3>
-              </div>
-              <div className="grid grid-cols-3 gap-6 text-center">
+              {/* Quick stats */}
+              <div className="flex gap-6 md:gap-10 mt-8 text-white/70">
                 {[
-                  { icon: Shield, label: '賠償責任保険付', sub: '万が一も安心' },
-                  { icon: Award, label: '認定職人のみ', sub: '厳格な審査基準' },
-                  { icon: BadgeCheck, label: '認定製品使用', sub: 'Fast Glass / BASE' },
-                ].map(item => (
-                  <div key={item.label}>
-                    <div className="w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-white/60 flex items-center justify-center mx-auto mb-3 shadow-sm">
-                      <item.icon size={22} className="text-accent-gold md:!w-6 md:!h-6" />
-                    </div>
-                    <p className="text-xs md:text-sm font-bold">{item.label}</p>
-                    <p className="text-xs text-text-muted mt-0.5">{item.sub}</p>
+                  { num: '500+', label: '施工実績' },
+                  { num: '4.9', label: '平均評価' },
+                  { num: '50+', label: '認定職人' },
+                ].map(s => (
+                  <div key={s.label} className="text-center">
+                    <p className="text-lg md:text-2xl font-black text-white">{s.num}</p>
+                    <p className="text-xs mt-0.5">{s.label}</p>
                   </div>
                 ))}
               </div>
             </div>
           </section>
 
-          <div className="text-center pb-10">
-            <div className="divider-gold w-16 mx-auto mb-4" />
-            <p className="text-sm text-text-muted font-display italic tracking-wide">&ldquo;傷なんて磨けばいい。&rdquo;</p>
-          </div>
+          {/* ── 3. WHY CHOOSE US ── */}
+          <section className="max-w-6xl mx-auto px-5 md:px-10 lg:px-16 py-16 md:py-24">
+            <div className="text-center mb-10 md:mb-14">
+              <p className="text-xs font-bold text-accent-gold tracking-[0.25em] uppercase mb-2">Why Choose Us</p>
+              <h3 className="font-heading text-2xl md:text-3xl font-black">
+                NAGARA PRO が選ばれる理由
+              </h3>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+              {[
+                {
+                  icon: Shield,
+                  title: '公認の高品質施工',
+                  desc: 'ながら洗車公認の職人が、Fast Glass / BASEなど厳選されたプロダクトのみを使用。ショップ品質の施工をお約束します。',
+                  accent: '#1a3a8f',
+                  bg: 'from-primary-light to-primary-subtle',
+                },
+                {
+                  icon: Wallet,
+                  title: '明朗会計・事前見積もり',
+                  desc: 'マイカー登録で車種・サイズに応じた料金が事前に確定。追加費用の心配なし。安心してご依頼いただけます。',
+                  accent: '#c9a96e',
+                  bg: 'from-accent-gold-light to-[#faf5ec]',
+                },
+                {
+                  icon: MapPin,
+                  title: '選べる施工場所',
+                  desc: 'ご自宅への「出張」はもちろん、職人宅への「持ち込み」にも対応。ライフスタイルに合わせた柔軟なサービス。',
+                  accent: '#0d9668',
+                  bg: 'from-success-light to-emerald-50',
+                },
+              ].map(item => (
+                <div key={item.title} className="card p-7 md:p-9 text-center group">
+                  <div className={`w-16 h-16 md:w-18 md:h-18 rounded-2xl bg-gradient-to-br ${item.bg} flex items-center justify-center mx-auto mb-5 group-hover:scale-110 transition-transform duration-300`}>
+                    <item.icon size={28} style={{ color: item.accent }} />
+                  </div>
+                  <h4 className="font-heading text-base md:text-lg font-bold mb-3">{item.title}</h4>
+                  <p className="text-sm text-text-secondary leading-relaxed">{item.desc}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          {/* ── 4. MENU & PRICING ── */}
+          <section className="bg-bg-secondary py-16 md:py-24">
+            <div className="max-w-6xl mx-auto px-5 md:px-10 lg:px-16">
+              <div className="text-center mb-10 md:mb-14">
+                <p className="text-xs font-bold text-accent-gold tracking-[0.25em] uppercase mb-2">Menu & Pricing</p>
+                <h3 className="font-heading text-2xl md:text-3xl font-black">メニューと料金の目安</h3>
+                <p className="text-sm text-text-muted mt-3 max-w-lg mx-auto">
+                  4つのコースからお車の状態やご要望に合わせてお選びください。<br className="hidden md:block" />
+                  マイカー登録でサイズに応じた正確な料金が確定します。
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6">
+                {services.map(svc => {
+                  const Icon = svc.icon;
+                  const isPopular = svc.popular;
+                  return (
+                    <div
+                      key={svc.id}
+                      className={`relative bg-white rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1 ${isPopular ? 'pricing-highlight ring-0' : 'border border-border shadow-md'}`}
+                    >
+                      {/* Popular badge */}
+                      {isPopular && (
+                        <div className="bg-gradient-to-r from-accent-gold to-accent-gold-dark text-white text-xs font-bold text-center py-2 tracking-wider">
+                          <Crown size={12} className="inline mr-1 -mt-0.5" />一番人気
+                        </div>
+                      )}
+
+                      {/* Image */}
+                      <div className="relative h-40 md:h-44 overflow-hidden">
+                        <img src={svc.image} alt={svc.name} className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+                        <div className="absolute top-3 left-3">
+                          <span className={`text-xs font-black px-3 py-1 rounded-lg ${isPopular ? 'bg-accent-gold text-white' : 'bg-white/90 text-text-primary shadow-sm'}`}>
+                            {svc.rank}
+                          </span>
+                        </div>
+                      </div>
+
+                      {/* Content */}
+                      <div className="p-5 md:p-6">
+                        <h4 className="font-heading font-bold text-base md:text-lg mb-1">{svc.name}</h4>
+                        <div className="flex items-center gap-2 text-text-muted text-xs mb-3">
+                          <Clock size={12} />
+                          <span>{svc.time}</span>
+                        </div>
+                        <p className="text-xs md:text-sm text-text-secondary leading-relaxed mb-4">
+                          {svc.description}
+                        </p>
+                        <div className="flex items-end justify-between">
+                          <div>
+                            <p className="text-xs text-text-muted">Sサイズ〜</p>
+                            <p className={`font-heading font-black text-xl md:text-2xl ${isPopular ? 'text-accent-gold-dark' : 'text-primary'}`}>
+                              {svc.price}
+                            </p>
+                          </div>
+                          <button
+                            className={`px-4 py-2 rounded-xl text-xs font-bold transition-all active:scale-95 ${isPopular ? 'bg-accent-gold hover:bg-accent-gold-dark text-white shadow-md' : 'bg-primary-light hover:bg-primary-subtle text-primary'}`}
+                            onClick={handleSearch}
+                          >
+                            職人を探す
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </section>
+
+          {/* ── 5. FEATURED PROFESSIONALS ── */}
+          <section className="max-w-6xl mx-auto px-5 md:px-10 lg:px-16 py-16 md:py-24">
+            <div className="flex items-end justify-between mb-8 md:mb-12">
+              <div>
+                <p className="text-xs font-bold text-accent-gold tracking-[0.25em] uppercase mb-2">Professionals</p>
+                <h3 className="font-heading text-2xl md:text-3xl font-black">おすすめの職人</h3>
+              </div>
+              <button
+                className="text-sm text-primary font-semibold flex items-center gap-1 hover:underline"
+                onClick={() => setView('list')}
+              >
+                すべて見る<ChevronRight size={16} />
+              </button>
+            </div>
+
+            {/* Horizontal scroll on mobile, grid on desktop */}
+            <div className="flex md:grid md:grid-cols-3 gap-5 overflow-x-auto snap-scroll hide-scrollbar pb-2 -mx-5 px-5 md:mx-0 md:px-0">
+              {detailersList.slice(0, 5).map((d, idx) => (
+                <button
+                  key={d.id}
+                  className="min-w-[300px] md:min-w-0 flex-shrink-0 card p-5 md:p-6 text-left group animate-fade-in-up"
+                  style={{ animationDelay: `${idx * 100}ms` }}
+                  onClick={() => { setSelectedDetailer(d); setView('profile'); }}
+                >
+                  {/* Top row: avatar + info */}
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary-light to-primary-subtle flex items-center justify-center shrink-0">
+                      <User size={22} className="text-primary" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center gap-1.5">
+                        <p className="font-heading font-bold text-sm md:text-base truncate">{d.name}</p>
+                        <BadgeCheck size={14} className="text-primary shrink-0" />
+                      </div>
+                      <div className="flex items-center gap-1 mt-0.5">
+                        <Star size={12} fill="#e8a838" stroke="#e8a838" />
+                        <span className="text-xs text-star font-bold">{d.rating}</span>
+                        <span className="text-xs text-text-muted">({d.reviews}件)</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Badges row */}
+                  <div className="flex flex-wrap gap-1.5 mb-3">
+                    <span className="badge badge-neutral text-[0.65rem]">{d.specialty}</span>
+                    <span className="badge badge-primary text-[0.65rem]">{d.badge}</span>
+                    {d.availableToday && <span className="badge badge-success text-[0.65rem]">本日空きあり</span>}
+                  </div>
+
+                  {/* Visit / Dropoff chips */}
+                  <div className="flex gap-1.5 mb-3">
+                    {d.visitOk && (
+                      <span className="chip chip-visit">
+                        <Truck size={10} />出張OK
+                      </span>
+                    )}
+                    {d.dropoffOk && (
+                      <span className="chip chip-dropoff">
+                        <HomeIcon size={10} />持ち込みOK
+                      </span>
+                    )}
+                  </div>
+
+                  {/* Area */}
+                  <p className="text-xs text-text-muted flex items-center gap-1">
+                    <MapPin size={12} />{d.area}
+                  </p>
+                </button>
+              ))}
+            </div>
+          </section>
+
+          {/* ── 6. HOW TO USE ── */}
+          <section className="bg-bg-secondary py-16 md:py-24">
+            <div className="max-w-5xl mx-auto px-5 md:px-10 lg:px-16">
+              <div className="text-center mb-10 md:mb-14">
+                <p className="text-xs font-bold text-accent-gold tracking-[0.25em] uppercase mb-2">How to Use</p>
+                <h3 className="font-heading text-2xl md:text-3xl font-black">ご利用の流れ</h3>
+                <p className="text-sm text-text-muted mt-3">かんたん4ステップで予約完了</p>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-4">
+                {[
+                  { step: 1, icon: Car, title: 'マイカー登録', desc: '車種を入力するとサイズ・料金が自動判定されます。' },
+                  { step: 2, icon: Search, title: 'エリアから職人を選ぶ', desc: 'お住まいのエリアで対応可能な職人を一覧検索。' },
+                  { step: 3, icon: Wallet, title: 'コース選択・事前見積もり', desc: 'お好みのコースを選択。料金が事前に確定します。' },
+                  { step: 4, icon: Calendar, title: '予約・施工完了', desc: '日時を選んで予約。当日は職人にお任せください。' },
+                ].map((item, idx) => (
+                  <div key={item.step} className="relative text-center">
+                    {/* Connector line (hidden on mobile) */}
+                    {idx < 3 && (
+                      <div className="hidden lg:block absolute top-8 left-[calc(50%+32px)] w-[calc(100%-64px)] h-[2px]">
+                        <div className="w-full h-full bg-gradient-to-r from-accent-gold/40 to-border" />
+                      </div>
+                    )}
+                    {/* Step circle */}
+                    <div className="relative inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-white border-2 border-accent-gold/20 shadow-md mb-4 mx-auto">
+                      <item.icon size={24} className="text-accent-gold" />
+                      <span className="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-accent-gold text-white text-xs font-black flex items-center justify-center shadow-sm">
+                        {item.step}
+                      </span>
+                    </div>
+                    <h4 className="font-heading font-bold text-sm md:text-base mb-2">{item.title}</h4>
+                    <p className="text-xs md:text-sm text-text-muted leading-relaxed">{item.desc}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          {/* ── 7. CTA & FOOTER ── */}
+          <section className="cta-gradient relative overflow-hidden">
+            {/* Decorative */}
+            <div className="absolute top-0 right-0 w-96 h-96 rounded-full bg-accent-gold/5 blur-[120px]" />
+            <div className="absolute bottom-0 left-0 w-72 h-72 rounded-full bg-white/3 blur-[80px]" />
+
+            <div className="relative max-w-4xl mx-auto px-5 md:px-10 py-20 md:py-28 text-center">
+              <div className="w-16 h-[3px] bg-gradient-to-r from-accent-gold to-accent-gold-dark rounded-full mb-6 mx-auto" />
+              <p className="font-display text-3xl md:text-5xl font-black text-white italic leading-tight mb-4">
+                &ldquo;傷なんて磨けばいい。&rdquo;
+              </p>
+              <p className="text-sm md:text-base text-blue-200/70 leading-relaxed mb-10 max-w-md mx-auto">
+                あなたの愛車を、プロの手で最高の状態に。<br />
+                まずは近くの職人を探してみませんか？
+              </p>
+              <button
+                className="bg-accent-gold hover:bg-accent-gold-dark text-white font-heading font-bold text-base md:text-lg px-10 py-4 md:py-5 rounded-2xl transition-all active:scale-[0.97] shadow-xl hover:shadow-2xl inline-flex items-center gap-2.5"
+                onClick={handleSearch}
+              >
+                <Search size={20} />
+                職人を探す
+                <ArrowRight size={18} />
+              </button>
+            </div>
+          </section>
+
+          {/* Footer */}
+          <footer className="bg-[#0a1228] text-white/50 py-10">
+            <div className="max-w-6xl mx-auto px-5 md:px-10 lg:px-16">
+              <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+                <div className="flex items-center gap-2">
+                  <span className="font-heading text-lg font-black text-white/80">
+                    NAGARA <span className="text-accent-gold font-display italic">PRO</span>
+                  </span>
+                </div>
+                <div className="flex gap-6 text-xs">
+                  <a href="#" className="hover:text-white/80 transition-colors">利用規約</a>
+                  <a href="#" className="hover:text-white/80 transition-colors">プライバシーポリシー</a>
+                  <a href="#" className="hover:text-white/80 transition-colors">特定商取引法</a>
+                  <a href="#" className="hover:text-white/80 transition-colors">お問い合わせ</a>
+                </div>
+              </div>
+              <div className="divider-gold mt-6 mb-4 opacity-20" />
+              <p className="text-center text-xs text-white/30">© 2026 NAGARA PRO. All rights reserved.</p>
+            </div>
+          </footer>
         </div>
       )}
 
-      {/* ═══ LIST ═══ */}
+      {/* ═══════════════════════════════════════════════
+          LIST VIEW (既存維持)
+          ═══════════════════════════════════════════════ */}
       {view === 'list' && (
         <div className="animate-fade-in">
           <header className="px-6 md:px-12 lg:px-20 pt-5 pb-4 flex items-center gap-3 ">
             <button className="w-10 h-10 rounded-2xl border border-border flex items-center justify-center shrink-0 hover:bg-bg-secondary transition-all" onClick={() => setView('home')}><ArrowLeft size={17} className="text-text-secondary" /></button>
             <div className="flex-1">
-              <h1 className="font-heading text-base md:text-lg font-bold">{searchArea}の職人</h1>
+              <h1 className="font-heading text-base md:text-lg font-bold">{selectedCity}の職人</h1>
               <p className="text-xs text-text-muted">{detailersList.length}件の結果</p>
             </div>
           </header>
@@ -219,10 +518,14 @@ export default function NagaraProPage() {
                       <button className="p-1.5" onClick={(e) => { e.stopPropagation(); toggleLike(d.id); }}><Heart size={18} className={likedIds.includes(d.id) ? 'text-nagara-red fill-nagara-red' : 'text-text-muted'} /></button>
                     </div>
                     <div className="flex items-center gap-2 mb-3"><Stars5 rating={d.rating} /><span className="text-xs text-star font-bold">{d.rating}</span><span className="text-xs text-text-muted">({d.reviews}件)</span></div>
-                    <div className="flex flex-wrap gap-1.5 mb-3">
+                    <div className="flex flex-wrap gap-1.5 mb-2">
                       <span className="badge badge-neutral">{d.specialty}</span>
                       <span className="badge badge-primary">{d.badge}</span>
                       {d.availableToday && <span className="badge badge-success">本日空きあり</span>}
+                    </div>
+                    <div className="flex gap-1.5 mb-2">
+                      {d.visitOk && <span className="chip chip-visit"><Truck size={10} />出張OK</span>}
+                      {d.dropoffOk && <span className="chip chip-dropoff"><HomeIcon size={10} />持ち込みOK</span>}
                     </div>
                     <p className="text-xs text-text-muted mb-2 flex items-center gap-1"><MapPin size={12} />{d.area}</p>
                     <p className="text-sm text-text-secondary leading-relaxed">{d.intro}</p>
@@ -239,7 +542,9 @@ export default function NagaraProPage() {
         </div>
       )}
 
-      {/* ═══ PROFILE ═══ */}
+      {/* ═══════════════════════════════════════════════
+          PROFILE VIEW (既存維持)
+          ═══════════════════════════════════════════════ */}
       {view === 'profile' && (
         <div className="animate-fade-in">
           <header className="px-6 md:px-12 lg:px-20 pt-5 pb-4 flex items-center gap-3 ">
@@ -265,10 +570,14 @@ export default function NagaraProPage() {
                       <span className="text-xs text-text-muted">•</span>
                       <span className="text-xs text-text-muted">{selectedDetailer.jobs}件施工</span>
                     </div>
-                    <div className="flex flex-wrap justify-center sm:justify-start gap-1.5 mb-4">
+                    <div className="flex flex-wrap justify-center sm:justify-start gap-1.5 mb-2">
                       <span className="badge badge-neutral">{selectedDetailer.specialty}</span>
                       <span className="badge badge-gold">{selectedDetailer.badge}</span>
                       <span className="badge badge-neutral"><MapPin size={10} />{selectedDetailer.area}</span>
+                    </div>
+                    <div className="flex flex-wrap justify-center sm:justify-start gap-1.5 mb-4">
+                      {selectedDetailer.visitOk && <span className="chip chip-visit"><Truck size={10} />出張OK</span>}
+                      {selectedDetailer.dropoffOk && <span className="chip chip-dropoff"><HomeIcon size={10} />持ち込みOK</span>}
                     </div>
                     <p className="text-sm text-text-secondary leading-relaxed">{selectedDetailer.intro}</p>
                     <div className="flex gap-2.5 mt-5">
@@ -332,7 +641,9 @@ export default function NagaraProPage() {
         </div>
       )}
 
-      {/* ═══ BOOKING ═══ */}
+      {/* ═══════════════════════════════════════════════
+          BOOKING VIEW (既存維持)
+          ═══════════════════════════════════════════════ */}
       {view === 'booking' && (
         <div className="animate-fade-in">
           <header className="px-6 md:px-12 lg:px-20 pt-5 pb-4 flex items-center gap-3 ">
