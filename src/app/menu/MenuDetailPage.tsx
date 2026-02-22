@@ -14,11 +14,11 @@ import {
 const sizes = ['SS', 'S', 'M', 'L', 'LL', 'XL'] as const;
 
 const sizeDescriptions: Record<string, string> = {
-    SS: '8.5m³未満（軽自動車）',
-    S: '8.5〜10.5m³（コンパクトカー）',
-    M: '10.5〜12.2m³（セダン・ハッチバック）',
-    L: '12.2〜14.0m³（中型SUV・ワゴン）',
-    LL: '14.0〜18.0m³（ミニバン・大型SUV）',
+    SS: '8.4m³以下（軽自動車）',
+    S: '8.5〜10.4m³（コンパクトカー）',
+    M: '10.5〜12.1m³（セダン・ハッチバック）',
+    L: '12.2〜13.9m³（中型SUV・ワゴン）',
+    LL: '14.0〜17.9m³（ミニバン・大型SUV）',
     XL: '18.0m³以上（大型SUV・高級バン）',
 };
 
@@ -49,6 +49,7 @@ export interface MenuData {
     features: string[];
     includes: string[];
     products: string[];
+    steps?: { title: string; desc: string }[];
 }
 
 /* ══════════════════════════════════════════
@@ -129,9 +130,9 @@ export default function MenuDetailPage({ menu }: { menu: MenuData }) {
 
                         {/* Quick price */}
                         <div className="bg-bg-secondary rounded-2xl p-5 border border-border-light">
-                            <p className="text-xs text-text-muted font-semibold mb-1">Sサイズ（コンパクトカー）〜</p>
+                            <p className="text-xs text-text-muted font-semibold mb-1">SSサイズ（軽自動車）〜</p>
                             <p className={`font-heading font-black text-3xl ${isPopular ? 'text-accent-gold-dark' : 'text-primary'}`}>
-                                {menu.prices['S']}〜
+                                {menu.prices['SS']}〜
                             </p>
                             <p className="text-xs text-text-muted mt-2">※サイズにより料金が異なります。下記料金表をご確認ください。</p>
                         </div>
@@ -171,8 +172,8 @@ export default function MenuDetailPage({ menu }: { menu: MenuData }) {
                                                 <div className="flex items-center gap-3">
                                                     <span
                                                         className={`inline-flex items-center justify-center w-10 h-10 rounded-xl text-sm font-black ${size === 'S'
-                                                                ? isPopular ? 'bg-accent-gold text-white' : 'bg-primary text-white'
-                                                                : 'bg-bg-secondary text-text-primary'
+                                                            ? isPopular ? 'bg-accent-gold text-white' : 'bg-primary text-white'
+                                                            : 'bg-bg-secondary text-text-primary'
                                                             }`}
                                                     >
                                                         {size}
@@ -188,8 +189,8 @@ export default function MenuDetailPage({ menu }: { menu: MenuData }) {
                                             </td>
                                             <td className="px-5 py-4 text-right">
                                                 <span className={`font-heading font-black text-lg ${size === 'S'
-                                                        ? isPopular ? 'text-accent-gold-dark' : 'text-primary'
-                                                        : 'text-text-primary'
+                                                    ? isPopular ? 'text-accent-gold-dark' : 'text-primary'
+                                                    : 'text-text-primary'
                                                     }`}>
                                                     {menu.prices[size]}
                                                 </span>
@@ -259,6 +260,37 @@ export default function MenuDetailPage({ menu }: { menu: MenuData }) {
                     </div>
                 </div>
             </section>
+
+            {/* ── WASH STEPS ── */}
+            {menu.steps && menu.steps.length > 0 && (
+                <section className="bg-bg-secondary py-12 md:py-16">
+                    <div className="max-w-4xl mx-auto px-5 md:px-10 lg:px-16">
+                        <div className="text-center mb-10">
+                            <p className="text-xs font-bold text-accent-gold tracking-[0.25em] uppercase mb-2">Wash Process</p>
+                            <h2 className="font-heading text-2xl md:text-3xl font-black">施工ステップ</h2>
+                            <p className="text-sm text-text-muted mt-3">丁寧な手作業で、愛車を新車以上の輝きへ導きます。</p>
+                        </div>
+
+                        <div className="space-y-4">
+                            {menu.steps.map((step, i) => (
+                                <div key={i} className="bg-white rounded-2xl p-5 md:p-6 border border-border-light shadow-sm flex items-start gap-4 md:gap-6">
+                                    <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-primary-light flex items-center justify-center shrink-0 border border-primary/10">
+                                        <span className="font-heading font-black text-lg md:text-xl text-primary">{i + 1}</span>
+                                    </div>
+                                    <div>
+                                        <h3 className="font-heading font-bold text-base md:text-lg mb-2 text-text-primary">
+                                            {step.title}
+                                        </h3>
+                                        <p className="text-xs md:text-sm text-text-secondary leading-relaxed">
+                                            {step.desc}
+                                        </p>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+            )}
 
             {/* ── CTA SECTION ── */}
             <section className="cta-gradient py-16 md:py-20 text-center">

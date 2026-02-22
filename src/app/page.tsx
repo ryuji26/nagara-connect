@@ -17,31 +17,31 @@ import {
 
 const services = [
   {
-    id: 'standard', rank: '梅', name: 'スタンダード',
-    time: '約60分', price: '¥5,500〜', priceNum: 5500,
-    description: '手軽に艶と撥水を復活。定期メンテナンスに最適な基本コース。',
-    features: ['手洗い洗車', '簡易コーティング', '室内清掃'],
+    id: 'standard', rank: 'BASIC', name: 'NAGARA スタンダード洗車',
+    time: '約60分', price: '¥3,200〜', priceNum: 3200,
+    description: '当日の状態に合わせて最適な洗車をご提案する、外装ボディ中心の基本手洗いコース。',
+    image: '/images/quick-wash.png',
     icon: Droplets, color: '#1a3a8f', bgColor: '#e8edf8',
   },
   {
-    id: 'detox', rank: '竹', name: 'デトックス',
-    time: '約90分', price: '¥11,000〜', priceNum: 11000,
-    description: '徹底下地処理＋選べるコーティング。汚れを根本からリセット。',
-    features: ['徹底下地処理', '鉄粉除去', '選べるコーティング'],
+    id: 'detox', rank: 'ADVANCE', name: 'NAGARA リセット洗車',
+    time: '約90分', price: '¥8,000〜', priceNum: 8000,
+    description: '専用下地処理で汚れを根本からリセットし、選べるコーティングで仕上げます。',
+    image: '/images/skin-improvement.png',
     icon: Sparkles, color: '#c9a96e', bgColor: '#f8f3eb',
   },
   {
-    id: 'detox-glass', rank: '松', name: 'デトックス＋ガラス',
-    time: '約120分', price: '¥22,000〜', priceNum: 22000,
-    description: 'ファストガラス施工。極上の艶と長期間持続する圧倒的保護力。',
-    features: ['徹底下地処理', 'Fast Glass施工', '最大2年持続'],
+    id: 'detox-glass', rank: 'PREMIUM', name: 'NAGARA ファストガラス施工',
+    time: '約120分', price: '¥16,000〜', priceNum: 16000,
+    description: '足回りから徹底洗浄。ファストガラス施工による極上の艶と圧倒的な長期間耐久の保護力。',
+    image: '/images/night-luster.png',
     icon: Diamond, color: '#1a3a8f', bgColor: '#e8edf8', popular: true,
   },
   {
-    id: 'detox-polish', rank: '特上', name: 'デトックス＋研磨',
-    time: '約240分', price: '¥50,000〜', priceNum: 50000,
-    description: '検定合格職人限定。研磨で傷を完全除去し、究極の美観を再生する最高峰メニュー。',
-    features: ['精密機械研磨', '傷・水ジミ完全除去', 'ガラスコーティング仕上げ'],
+    id: 'detox-polish', rank: 'PRO', name: 'ブラックカット本格研磨',
+    time: '約240分', price: '¥40,000〜', priceNum: 40000,
+    description: '検定合格職人限定。本格研磨で傷を完全除去し、究極の美観を再生する最高峰メニュー。',
+    image: '/images/restore-pro.png',
     icon: Zap, color: '#c9a96e', bgColor: '#f8f3eb', premium: true,
   },
 ];
@@ -300,44 +300,43 @@ export default function NagaraProPage() {
                       )}
 
                       {/* Card content */}
-                      <div className="p-6 md:p-7 flex flex-col flex-1">
-                        {/* Rank & Icon */}
-                        <div className="flex items-center gap-3 mb-4">
-                          <div className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0" style={{ background: svc.bgColor }}>
-                            <Icon size={22} style={{ color: svc.color }} />
-                          </div>
-                          <div>
-                            <span className={`text-xs font-black tracking-wide ${isPremium ? 'text-accent-gold' : 'text-text-muted'}`}>
-                              【{svc.rank}】
-                            </span>
-                            <h4 className="font-heading font-bold text-base md:text-lg leading-tight">{svc.name}</h4>
-                          </div>
-                        </div>
-
-                        {/* Price & Time */}
-                        <div className="mb-4">
-                          <p className={`font-heading font-black text-2xl md:text-3xl ${isPremium ? 'text-accent-gold-dark' : isPopular ? 'text-accent-gold-dark' : 'text-primary'}`}>
-                            {svc.price}
-                          </p>
-                          <div className="flex items-center gap-1.5 text-text-muted text-xs mt-1">
-                            <Clock size={12} />
-                            <span>{svc.time}</span>
-                          </div>
-                        </div>
-
-                        {/* Description */}
-                        <p className="text-xs md:text-sm text-text-secondary leading-relaxed mb-4">
-                          {svc.description}
-                        </p>
-
-                        {/* Features */}
-                        <div className="space-y-2 mb-5 flex-1">
-                          {svc.features?.map(f => (
-                            <div key={f} className="flex items-center gap-2 text-xs md:text-sm text-text-secondary">
-                              <Check size={14} className={`shrink-0 ${isPremium ? 'text-accent-gold' : 'text-success'}`} />
-                              <span>{f}</span>
+                      <div className="flex flex-col flex-1 pb-6 relative z-10">
+                        {/* Image Header */}
+                        <div className="w-full h-40 md:h-48 relative overflow-hidden shrink-0 group rounded-t-2xl">
+                          <img src={(svc as any).image} alt={svc.name} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                          <div className={`absolute inset-0 bg-gradient-to-t ${isPremium ? 'from-[#fffdf6] via-[#f8f0e0]/80' : 'from-[#0f172a] via-[#0f172a]/40'} to-transparent opacity-90`} />
+                          <div className="absolute inset-x-0 bottom-4 px-5 flex items-end justify-between">
+                            <div className="flex flex-col">
+                              <span className={`text-[10px] font-black tracking-widest mb-1 ${isPremium ? 'text-accent-gold-dark' : 'text-blue-300 drop-shadow-md'}`}>
+                                COURSE {svc.rank}
+                              </span>
+                              <h4 className={`font-heading font-black text-lg md:text-xl tracking-tight ${isPremium ? 'text-[#2a1810]' : 'text-white drop-shadow-md'}`}>{svc.name}</h4>
                             </div>
-                          ))}
+                          </div>
+                        </div>
+
+                        {/* Text Content */}
+                        <div className="p-5 md:p-6 flex flex-col flex-1">
+                          {/* Price & Time */}
+                          <div className="mb-4 pb-4 border-b border-border/50">
+                            <div>
+                              <p className="text-[10px] font-bold text-text-muted mb-0.5 whitespace-nowrap">SSサイズ料金〜</p>
+                              <div className="flex flex-col items-start gap-1">
+                                <p className={`font-heading font-black text-2xl md:text-3xl tracking-tight leading-none whitespace-nowrap ${isPremium ? 'text-accent-gold-dark' : isPopular ? 'text-accent-gold-dark' : 'text-primary'}`}>
+                                  {svc.price}
+                                </p>
+                                <div className="flex items-center gap-1 text-text-muted px-2 py-1 rounded-md bg-bg-secondary border border-border/50 w-fit">
+                                  <Clock size={12} className="shrink-0" />
+                                  <span className="text-xs font-semibold whitespace-nowrap">{svc.time}</span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* Description */}
+                          <p className={`text-xs md:text-sm leading-relaxed flex-1 ${isPremium ? 'text-text-secondary font-medium' : 'text-text-secondary'}`}>
+                            {svc.description}
+                          </p>
                         </div>
 
                         {/* CTA Button */}
@@ -359,26 +358,37 @@ export default function NagaraProPage() {
               </div>
 
               {/* ── OPTION MENU ── */}
-              <div className="mt-10 md:mt-14">
-                <div className="text-center mb-5">
+              <div className="mt-12 md:mt-16 max-w-5xl mx-auto">
+                <div className="text-center mb-6">
                   <p className="text-xs font-bold text-text-muted tracking-[0.15em] uppercase mb-1">Options</p>
-                  <h4 className="font-heading text-base md:text-lg font-bold">オプションメニュー</h4>
+                  <h4 className="font-heading text-lg md:text-xl font-bold">オプションメニュー</h4>
+                  <p className="text-xs text-text-muted mt-2">
+                    ※ 窓ガラスの施工は全コースで標準外（オプション扱い）となります。
+                  </p>
                 </div>
-                <div className="flex flex-wrap justify-center gap-3 md:gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4">
                   {[
-                    { icon: Sparkles, label: 'ホイール・タイヤ洗浄', desc: '足回りの汚れを徹底除去' },
-                    { icon: Droplets, label: '窓ガラスのウロコ落とし＆撥水', desc: '視界クリア・雨天も安心' },
-                  ].map(opt => (
+                    { icon: Sparkles, label: 'ホイール・タイヤ洗浄\n(コーティング込)', price: '¥4,500', time: '約60分', desc: '※BASIC・ADVANCE向け' },
+                    { icon: Droplets, label: '窓ガラス ウロコ落とし\n＋撥水コーティング', price: 'フロント: ¥4,000\n全面: ¥8,000', time: '約75分〜', desc: '頑固なウロコを除去' },
+                    { icon: Zap, label: '窓ガラス\n撥水コーティングのみ', price: 'フロント: ¥2,000\n全面: ¥4,000', time: '約38分〜', desc: 'ウロコがないお車向け' },
+                  ].map((opt, i) => (
                     <div
-                      key={opt.label}
-                      className="flex items-center gap-3 bg-white border border-border rounded-2xl px-5 py-4 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all cursor-default"
+                      key={i}
+                      className="flex flex-col md:flex-row items-center md:items-start gap-4 bg-white border border-border rounded-2xl p-5 shadow-sm hover:shadow-md transition-all h-full"
                     >
-                      <div className="w-10 h-10 rounded-xl bg-primary-light flex items-center justify-center shrink-0">
-                        <opt.icon size={18} className="text-primary" />
+                      <div className="w-12 h-12 rounded-xl bg-primary-light flex items-center justify-center shrink-0">
+                        <opt.icon size={20} className="text-primary" />
                       </div>
-                      <div>
-                        <p className="text-sm font-bold text-text-primary">{opt.label}</p>
-                        <p className="text-xs text-text-muted">{opt.desc}</p>
+                      <div className="text-center md:text-left flex-1 w-full">
+                        <p className="text-[13px] md:text-sm font-bold text-text-primary whitespace-pre-line leading-relaxed mb-1.5">{opt.label}</p>
+                        <div className="bg-bg-secondary border border-border/50 rounded-lg p-3 mb-2">
+                          <p className="font-heading font-black text-primary text-sm whitespace-pre-line leading-tight">{opt.price}</p>
+                          <div className="flex items-center justify-center md:justify-start gap-1 font-semibold text-text-muted text-[10px] mt-1.5">
+                            <Clock size={10} />
+                            <span>{opt.time}</span>
+                          </div>
+                        </div>
+                        <p className="text-[10px] md:text-xs text-text-secondary">{opt.desc}</p>
                       </div>
                     </div>
                   ))}
