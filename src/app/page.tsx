@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import Link from 'next/link';
 import {
   MapPin, Search, Star, Clock, Shield, ChevronRight,
   Droplets, Sparkles, Zap, Check, User, Calendar,
@@ -100,28 +101,15 @@ export default function NagaraProPage() {
                 NAGARA <span className="text-primary font-display italic">PRO</span>
               </h1>
               <div className="flex items-center gap-2 md:gap-3">
-                <button
-                  className="hidden sm:flex items-center gap-2 px-4 py-2 rounded-xl bg-accent-gold-light border border-accent-gold/20 text-sm font-semibold text-accent-gold-dark hover:bg-accent-gold/10 transition-all"
-                >
-                  <Car size={15} />
-                  マイカー登録
-                </button>
                 <button className="flex items-center gap-1.5 px-3 py-2 rounded-xl text-sm font-medium text-text-secondary hover:bg-bg-secondary transition-all">
                   <LogIn size={15} />
-                  <span className="hidden md:inline">ログイン</span>
+                  ログイン
                 </button>
                 <button className="flex items-center gap-1.5 px-4 py-2 rounded-xl text-sm font-bold text-white bg-primary hover:bg-primary-dark transition-all shadow-sm">
                   <UserPlus size={15} />
-                  <span className="hidden md:inline">新規登録</span>
+                  会員登録
                 </button>
               </div>
-            </div>
-            {/* Mobile: マイカー登録バー */}
-            <div className="sm:hidden px-5 pb-3">
-              <button className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-accent-gold-light border border-accent-gold/20 text-sm font-semibold text-accent-gold-dark active:scale-[0.98] transition-all">
-                <Car size={15} />
-                マイカー登録して料金を確認
-              </button>
             </div>
           </header>
 
@@ -264,7 +252,7 @@ export default function NagaraProPage() {
                 <h3 className="font-heading text-2xl md:text-3xl font-black">メニューと料金の目安</h3>
                 <p className="text-sm text-text-muted mt-3 max-w-lg mx-auto">
                   4つのコースからお車の状態やご要望に合わせてお選びください。<br className="hidden md:block" />
-                  マイカー登録でサイズに応じた正確な料金が確定します。
+                  サイズ別の料金は各メニュー詳細をご確認ください。
                 </p>
               </div>
 
@@ -311,12 +299,12 @@ export default function NagaraProPage() {
                               {svc.price}
                             </p>
                           </div>
-                          <button
+                          <Link
+                            href={`/menu/${svc.id}`}
                             className={`px-4 py-2 rounded-xl text-xs font-bold transition-all active:scale-95 ${isPopular ? 'bg-accent-gold hover:bg-accent-gold-dark text-white shadow-md' : 'bg-primary-light hover:bg-primary-subtle text-primary'}`}
-                            onClick={handleSearch}
                           >
-                            職人を探す
-                          </button>
+                            詳細を見る
+                          </Link>
                         </div>
                       </div>
                     </div>
